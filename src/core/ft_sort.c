@@ -6,33 +6,28 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:04:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 17:41:08 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:27:10 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_stack	*ft_sort_b(t_stack **a)
+static t_stack	*ft_sort_b(t_stack **a, t_pushswap *pushswap)
 {
 	t_stack	*b;
 
 	b = NULL;
 	while (ft_stacksize(*a) > 3 && !ft_stacksorted(*a))
-		ft_pb(a, &b, 1);
+		ft_pb(a, &b, pushswap);
 	return (b);
 }
 
-static int	ft_sort_big(t_stack **a)
+static void	ft_sort_big(t_stack **a, t_stack **b, t_pushswap *pushswap)
 {
-	t_stack	*b;
-
-	b = ft_stacknew((*a)->value);
-	if (!b)
-		return (ft_free_stack(a), ft_exit_error(1), 0);
-	return (1);
+	return ;
 }
 
-void	ft_sort_simple(t_stack **a, t_stack **b)
+void	ft_sort_simple(t_stack **a, t_stack **b, t_pushswap *pushswap)
 {
-	
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:08:26 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:33:13 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,25 @@ int	ft_stacksize(t_stack *stack)
 	return (i);
 }
 
-void	ft_stackappend(char *nbrstr, t_stack **a)
+void	ft_assing_index(t_stack **stack)
 {
-	int		n;
-	t_stack	*last;
-	t_stack	*new;
+	t_stack	*cursor;
+	t_stack	*tmp;
+	int		i;
 
-	if (!nbrstr || *nbrstr == '\0')
-		ft_exit_error(1);
-	if (!ft_valid_int(nbrstr))
-		ft_exit_error(1);
-	n = ft_atoi(nbrstr);
-	if (!ft_int_range(n) || (a != NULL && ft_duplicated(a, n)))
-		ft_exit_error(1);
-	new = ft_stacknew(n);
-	ft_lstadd_back(a, new);
+	i = 0;
+	cursor = *stack;
+	while (cursor != NULL)
+	{
+		tmp = stack;
+		i = 0;
+		while (tmp != NULL)
+		{
+			if (tmp->value < cursor->value)
+				i++;
+			tmp = tmp->next;
+		}
+		cursor->index = i;
+		cursor = cursor->next;
+	}
 }

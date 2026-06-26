@@ -6,15 +6,15 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 19:15:54 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 16:12:06 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:42:20 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_exit_error(int key)
+void	ft_exit(int error)
 {
-	if (key == 1)
+	if (error == 1)
 	{
 		write(2, "Error\n", 6);
 		exit(1);
@@ -37,28 +37,9 @@ void	ft_printstack(t_stack *stack)
 	ft_printf("\n-------- end of stack --------");
 }
 
-void	ft_exit_error_str(int key, char *str)
-{
-	char	*sdup;
-	size_t	strlen;
-
-	if (!str)
-		sdup = ft_strdup("Error\n");
-	else
-		sdup = ft_strdup(str);
-	strlen = ft_strlen(sdup);
-	if (key == 1)
-	{
-		write(2, sdup, strlen);
-		exit(1);
-	}
-	else
-		exit(0);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
@@ -66,25 +47,25 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-float ft_compute_disorder(int *numbers, int size)
+float	ft_compute_disorder(int *numbers, int size)
 {
-    int mistakes;
-    int total_pairs;
-    int i;
-    int j;
+	int	mistakes;
+	int	total_pairs;
+	int	i;
+	int	j;
 
-    i = -1;
-    mistakes = 0;
-    total_pairs = 0;
-    while (++i < size)
-    {
-        j = i + 1;
-        while (j < size)
-        {
-            if (numbers[i] > numbers[j])
-                mistakes++;
-            total_pairs++;
-            j++;
-        }
-    }
+	i = -1;
+	mistakes = 0;
+	total_pairs = 0;
+	while (++i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (numbers[i] > numbers[j])
+				mistakes++;
+			total_pairs++;
+			j++;
+		}
+	}
 }

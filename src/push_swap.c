@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:26:53 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:23:46 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	ft_sort_simple(t_stack **a, t_stack **b, t_pushswap *pushswap)
 {
-	if (ft_stacksize(*a) > 3 && !ft_issorted(*a))
+	if (ft_stacksize(*a) > 3 && !ft_stacksorted(*a))
 		ft_pb(a, b, pushswap);
-	if (ft_stacksize(*a) > 3 && !ft_issorted(*a))
+	if (ft_stacksize(*a) > 3 && !ft_stacksorted(*a))
 		ft_pb(a, b, pushswap);
-	if (ft_stacksize(*a) > 3 && !ft_issorted(*a))
+	if (ft_stacksize(*a) > 3 && !ft_stacksorted(*a))
 		ft_pb(a, b, pushswap);
 }
 
@@ -32,15 +32,14 @@ static void	ft_select_sort(t_stack **a, t_stack **b, t_pushswap *pushswap)
 
 	if (pushswap->numbers_size == 2)
 	{
-		a = ft_parse_stack(pushswap->numbers, pushswap->numbers_size);
 		return (ft_sa(a, pushswap));
 	}
 	else
 	{
 		b = malloc(sizeof(t_stack *));
 		if (!b)
-			return (NULL);
-		ft_quicksort(a, b, pushswap);
+			return ;
+		ft_pa(a, b, pushswap);
 	}
 }
 
@@ -57,8 +56,8 @@ int	main(int argc, char **argv)
 		return (1);
 	a = ft_parse_stack(pushswap->numbers, pushswap->numbers_size);
 	if (!a)
-		return (free(pushswap), NULL);
-	if (!ft_issorted(a))
+		return (free(pushswap), 1);
+	if (!ft_stacksorted(a))
 		ft_select_sort(&a, &b, pushswap);
 	if (pushswap->bench)
 		ft_print_bench(pushswap);

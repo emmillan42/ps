@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:29:35 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:20:45 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 12:19:32 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,6 @@ static void	ft_free_split(char **split)
 		split++;
 		free(tmp);
 	}
-}
-
-t_pushswap	*ft_parse_pushswap(int argc, char **argv)
-{
-	t_pushswap	*pushswap;
-	int			i;
-
-	pushswap = ft_pushswap_init();
-	if (!pushswap)
-		return (NULL);
-	i = 1;
-	while (i < argc)
-		pushswap->joined_args = ft_strjoin_sep(pushswap->joined_args, argv[i]);
-	if (!pushswap->joined_args)
-		return (free(pushswap), NULL);
-	pushswap->splitted = ft_split(pushswap->joined_args, ' ');
-	pushswap = ft_split_numbers(pushswap->splitted, &pushswap);
-	pushswap = ft_find_selector(pushswap->splitted, &pushswap);
-	pushswap->bench = ft_find_bench(argc, argv);
-	if (!pushswap->valid)
-		return (free(pushswap), NULL);
-	return (pushswap);
 }
 
 static t_pushswap	*ft_find_selector(char **strs, t_pushswap **pushswap)
@@ -108,4 +86,26 @@ static t_pushswap	*ft_pushswap_init(void)
 		return (NULL);
 	init->valid = 1;
 	return (init);
+}
+
+t_pushswap	*ft_parse_pushswap(int argc, char **argv)
+{
+	t_pushswap	*pushswap;
+	int			i;
+
+	pushswap = ft_pushswap_init();
+	if (!pushswap)
+		return (NULL);
+	i = 1;
+	while (i < argc)
+		pushswap->joined_args = ft_strjoin_sep(pushswap->joined_args, argv[i]);
+	if (!pushswap->joined_args)
+		return (free(pushswap), NULL);
+	pushswap->splitted = ft_split(pushswap->joined_args, ' ');
+	pushswap = ft_split_numbers(pushswap->splitted, &pushswap);
+	pushswap = ft_find_selector(pushswap->splitted, &pushswap);
+	pushswap->bench = ft_find_bench(argc, argv);
+	if (!pushswap->valid)
+		return (free(pushswap), NULL);
+	return (pushswap);
 }

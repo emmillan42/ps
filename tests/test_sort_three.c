@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_chunks.c                                   :+:      :+:    :+:   */
+/*   test_sort_three.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:39:01 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 13:19:33 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 13:20:50 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,16 @@ void	ft_sort_three(t_stack **stack, t_pushswap *pushswap)
 	ft_sort_three_helper(stack, pushswap);
 }
 
+int main()
+{
+    char str[] = "a";
+    char se1[] = "--simple";
+    char se2[] = "--medium";
+    char se3[] = "--complex";
+    char se4[] = "--adaptive";
+    int		arr[] = {3, 2, 1, 5, 97, 43, 6, 7, 42, 8};
+    printf("Hello World %.2f\n", ft_compute_disorder(arr, (sizeof(arr) / sizeof(int))));
+    printf("Hello World %d\n", strcmp(str, se1));
+
+    return 0;
+}

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:15:58 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:40:48 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_stackindex(t_stack *stack)
 	}
 }
 
-int	ft_issorted(t_stack *stack)
+int	ft_stacksorted(t_stack *stack)
 {
 	while (stack != NULL && stack->next != NULL)
 	{

@@ -11,14 +11,17 @@ OBJS_DIR = obj
 CFILES = push_swap.c \
 	core/ft_sort.c \
 	core/ft_sort_utils.c \
-	operations/ft_operations.c \
-	operations/ft_operations_a.c \
-	operations/ft_operations_b.c \
+	core/ft_sort_chunks.c \
+	operations/push/ft_push.c \
+	operations/rotate/ft_rotate.c \
+	parsing/ft_parse.c \
+	parsing/ft_parse_stack.c \
+	parsing/ft_parse_utils.c \
+	parsing/ft_parse_utils_2.c \
 	utils/ft_utils.c \
-	utils/ft_stacklist_utils.c \
-	utils/ft_stacklist_utils_2.c \
-	parsing/ft_parsing_utils.c \
-	parsing/ft_parsing.c
+	utils/ft_bench.c \
+	utils/ft_stack_utils.c \
+	utils/ft_stack_utils_2.c \
 
 OFILES = $(CFILES:%.c=%.o)
 

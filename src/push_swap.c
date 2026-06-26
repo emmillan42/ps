@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 18:25:25 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:26:53 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static void	ft_select_sort(t_stack **a, t_stack **b, t_pushswap *pushswap)
 	if (pushswap->numbers_size == 2)
 	{
 		a = ft_parse_stack(pushswap->numbers, pushswap->numbers_size);
-		return (ft_sa(a));
+		return (ft_sa(a, pushswap));
 	}
 	else
 	{
-		b = malloc(sizeof(t_stack*));
+		b = malloc(sizeof(t_stack *));
 		if (!b)
 			return (NULL);
 		ft_quicksort(a, b, pushswap);

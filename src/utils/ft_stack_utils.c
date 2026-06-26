@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 17:51:43 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:08:26 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,4 @@ void	ft_stackappend(char *nbrstr, t_stack **a)
 		ft_exit_error(1);
 	new = ft_stacknew(n);
 	ft_lstadd_back(a, new);
-}
-
-void	ft_stackindex(t_stack *stack)
-{
-	int	less;
-	t_stack	*tmp;
-
-	while (stack != NULL)
-	{
-		if (stack)
-		stack = stack->next;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 18:04:34 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:16:17 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strjoin_sep(char *prev, char *new)
 	else
 		prev_len = ft_strlen(prev);
 	joined = malloc((prev_len + new_len + 2) * sizeof(char));
-	if (!joined) //if not joined, I should free the prev?
+	if (!joined)
 		return (free(prev), NULL);
 	joined[prev_len] = ' ';
 	ft_strlcpy(joined, prev, prev_len);

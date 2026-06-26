@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:29:35 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 18:04:27 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 11:20:45 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static t_pushswap	*ft_split_numbers(char	**strs, t_pushswap **pushswap)
 	return (*pushswap);
 }
 
-//FT_PARSE_UTILS
 static t_pushswap	*ft_pushswap_init(void)
 {
 	t_pushswap	*init;
@@ -110,5 +109,3 @@ static t_pushswap	*ft_pushswap_init(void)
 	init->valid = 1;
 	return (init);
 }
-
-

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 18:04:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/27 19:54:22 by durisosa         ###   ########.fr       */
+/*   Created: 2026/06/27 17:47:57 by durisosa          #+#    #+#             */
+/*   Updated: 2026/06/27 17:48:45 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_stack	*ft_sort_b(t_stack **a, t_pushswap *pushswap)
+void	ft_printstack(t_stack *stack)
 {
-	t_stack	*b;
+	int	count;
 
-	b = NULL;
-	while (ft_stacksize(*a) > 3 && !ft_stacksorted(*a))
-		ft_pb(a, &b, pushswap);
-	return (b);
+	count = 0;
+	ft_printf("-------- begin of stack --------\n");
+	while (stack->next != NULL)
+	{
+		ft_printf("[%d] stack node value is: '%d'\n", count, stack->value);
+		stack = stack->next;
+	}
+	ft_printf("\n-------- end of stack --------");
 }
 
-static void	ft_sort_big(t_stack **a, t_stack **b, t_pushswap *pushswap)
+void	ft_printstacks(t_stack *a, t_stack *b)
 {
-	return ;
-}
-
-void	ft_sort_simple(t_stack **a, t_stack **b, t_pushswap *pushswap)
-{
-	return ;
+	ft_printstack(a);
+	ft_printstack(b);
 }

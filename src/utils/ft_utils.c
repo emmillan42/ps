@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 19:15:54 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:42:20 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/27 17:47:54 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ void	ft_exit(int error)
 	}
 	else
 		exit(0);
-}
-
-void	ft_printstack(t_stack *stack)
-{
-	int	count;
-
-	count = 0;
-	ft_printf("-------- begin of stack --------\n");
-	while (stack->next != NULL)
-	{
-		ft_printf("[%d] stack node value is: '%d'\n", count, stack->value);
-		stack = stack->next;
-	}
-	ft_printf("\n-------- end of stack --------");
 }
 
 int	ft_strcmp(char *s1, char *s2)

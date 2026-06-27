@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:16:17 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:29:49 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,24 @@ char	*ft_strjoin_sep(char *prev, char *new)
 	size_t	prev_len;
 	size_t	new_len;
 
+	printf("join is %s", joined);
 	if (!new)
 		return (prev);
 	if (!prev)
 		prev_len = 0;
 	else
 		prev_len = ft_strlen(prev);
+	new_len = ft_strlen(new);
 	joined = malloc((prev_len + new_len + 2) * sizeof(char));
 	if (!joined)
 		return (free(prev), NULL);
-	joined[prev_len] = ' ';
 	ft_strlcpy(joined, prev, prev_len);
+	ft_strlcpy(joined + prev_len, " ", 1);
 	ft_strlcpy(joined + prev_len + 1, new, new_len);
+	if (prev != NULL)
+		free(prev);
+
+	printf("join is %s", joined);
 	return (joined);
 }
 

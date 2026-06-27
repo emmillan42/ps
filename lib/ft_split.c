@@ -6,11 +6,12 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:41:33 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 17:53:48 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:27:14 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stdio.h"
 
 static int	count_words(const char *s, char c)
 {
@@ -19,6 +20,7 @@ static int	count_words(const char *s, char c)
 
 	i = 0;
 	count = 0;
+	printf("count is %d", count);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
@@ -45,7 +47,8 @@ static char	**ft_free_split(char **split)
 	return (NULL);
 }
 
-static char	*ft_split_substr(const char *s, unsigned int start, unsigned int len)
+static char	*ft_split_substr(const char *s, unsigned int start,
+	unsigned int len)
 {
 	size_t	i;
 	char	*substr;
@@ -103,6 +106,7 @@ char	**ft_split(const char *s, char c)
 	if (!split)
 		return (NULL);
 	split = ft_execute_split(split, s, c);
+	printf("split to %s", split[1]);
 	if (!split)
 		return (ft_free_split(split));
 	return (split);

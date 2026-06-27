@@ -10,17 +10,14 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <string.h>
 #include "push_swap.h"
 
-int	main()
+int	main(void)
 {
 	t_stack	*stack;
+	char	*arr1;
 
-	char	arr1[];
-
-	 
-	ft_parse_pushswap(ft_count_words(arr1), arr);
-	stack = ft_parse_stack();
-
-    printf("Hello World %.2f\n", ft_compute_disorder(arr, (sizeof(arr) / sizeof(int))));
-    printf("Hello World %d\n", strcmp(str, se1));
-    return (0);
+	arr1 = ft_strdup("23 45 6 7 11 9 1");
+	ft_parse_pushswap(ft_count_words(arr1), arr1);
+	stack = ft_parse_stack(ft_count_words(arr1), arr1);
+	ft_printstack(stack);
+	return (0);
 }

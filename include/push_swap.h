@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 12:47:35 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:11:34 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		ft_stackindex(t_stack *stack);
 int			ft_issorted(int *numbers, int size);
 int			ft_index(t_stack *stack, int target);
 int			ft_indexrel(t_stack *stack, int target);
+void		ft_printstack(t_stack *stack);
 
 //BENCH_UTILS
 void		ft_print_bench(t_pushswap *pushswap);

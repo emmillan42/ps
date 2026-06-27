@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 12:23:46 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/27 19:57:07 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (1);
+	pushswap = NULL;
+	a = NULL;
+	b = NULL;
 	pushswap = ft_parse_pushswap(argc, argv);
 	if (!pushswap)
 		return (1);

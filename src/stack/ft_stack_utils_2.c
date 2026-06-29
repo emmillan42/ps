@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   ft_stack_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/27 17:47:57 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/27 17:48:45 by durisosa         ###   ########.fr       */
+/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
+/*   Updated: 2026/06/29 21:17:35 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_printstack(t_stack *stack)
+int	ft_index(t_stack *stack, int target)
 {
-	int	count;
-
-	count = 0;
-	ft_printf("-------- begin of stack --------\n");
-	while (stack->next != NULL)
-	{
-		ft_printf("[%d] stack node value is: '%d'\n", count, stack->value);
-		stack = stack->next;
-	}
-	ft_printf("\n-------- end of stack --------");
+	return (-1);
 }
 
-void	ft_printstacks(t_stack *a, t_stack *b)
+int	ft_indexrel(t_stack *stack, int target)
 {
-	ft_printstack(a);
-	ft_printstack(b);
+	return (-1);
 }

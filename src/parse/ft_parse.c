@@ -6,120 +6,108 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:29:35 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/27 20:05:44 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/29 21:45:46 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h" 
 
-static void	ft_free_split(char **split)
+int	ft_parse_pushswap(t_stack **a, t_stack **b, int argc, char **argv)
 {
-	char	*tmp;
+	int	i;
 
-	if (!split)
+	i = -1;
+	(*a) = ft_stacknew();
+	(*b) = ft_stacknew();
+	if (!*a || !*b)
+		return (free(*a), free(*b), 0);
+	if (!ft_parse_flags(a, argv, argc))
+		return (free(*a), free(*b), 0);
+	if (!(*a)->strategy)
+		ft_stack_setflag(a, "adaptive");
+	if (!ft_parse_integers(a, argv, argc))
+		return (free(*a), free(*b), 0);
+	if (ft_duplicated(*a))
+		return (free(*a), free(*b), 0);
+	if (!ft_stack_init(*a))
+		return (free(*a), free(*b), 0);
+	ft_print_stack(*a);
+	return (1);
+}
+
+/*
+HUGE RESPONSIBILITY ON THIS FUNCTION
+Validate that we have received a valid input from the user.
+Scenarios to contemplate:
+./push_swap.out " 35 46 7   " 9 8 7 --simple
+./push_swap.out 34 45  "" 9 8 7 " " "   " --> parse integers only until 45.
+./push_swap.out 34 45  " 99 hola 3" 9 --> parse integers only until 99.
+./push_swap.out "" "  " " 35 46 7  --complex " 9 8 7 
+
+Example invalid inputs:
+
+./push_swap.out a" 35 46 7   " 9 8 7 --simple
+./push_swap.out d d ewa
+./push_swap.out --complex 9 8 7 Hola mundo
+
+For each argv, split it in case it is a quoted string, iterate
+over the split to check if an invalid input is found.
+
+by: durisosa
+*/
+int	ft_valid_args(int argc, char **argv)
+{
+	char	**split;
+	int		strategy_count;
+	int		i;
+	int		j;
+
+	i = 0;
+	strategy_count = 0;
+	while (i < argc && strategy_count < 2)
+	{
+		split = ft_split(argv[i], ' ');
+		if (!split || !split[i])
+			return (0);
+		j = 0;
+		while (split[j])
+		{
+			if (!ft_valid_args_split(split[j], &strategy_count))
+				return (ft_free_split(split), 0);
+			j++;
+		}
+		ft_free_split(split);
+		i++;
+	}
+	ft_free_split(split);
+	return (1);
+}
+
+int	ft_valid_args_split(char *str, int *strategy_count)
+{
+	if (!ft_isflag_pushswap(str) && !ft_valid_istr(str))
+		return (0);
+	if (ft_isstrategy(str))
+		*strategy_count++;
+	if (strategy_count > 1)
+		return (0);
+	return (1);
+}
+
+int	ft_stack_init(t_stack **a)
+{
+	if (!a || !*a)
+		return (0);
+	(*a)->disorder = ft_compute_disorder(*a);
+	if ((*a)->disorder == 0)
+		ft_stack_set_strategies(a, "already sorted", "no complexity");
+	return (1);
+}
+
+void	ft_stack_set_strategies(t_stack **a, char *strategy, char *complexity)
+{
+	if (!a || !*a || !strategy || !complexity)
 		return ;
-	while (*split)
-	{
-		tmp = *split;
-		split++;
-		free(tmp);
-	}
-}
-
-static t_pushswap	*ft_find_selector(char **strs, t_pushswap **pushswap)
-{
-	int	found;
-	int	i;
-
-	found = 0;
-	i = 0;
-	while (strs[i])
-	{
-		if (ft_valid_selector(strs[i]))
-		{
-			if (found)
-				return ((*pushswap)->valid = 0,
-					(*pushswap)->error = "More than 1 valid selector",
-					*pushswap);
-			else
-			{
-				(*pushswap)->selector = strs[i];
-				found = 1;
-			}
-		}
-		i++;
-	}
-	if (!found)
-		(*pushswap)->selector = "--adaptative";
-}
-static int	ft_count_valid_ints(char **strs)
-{
-
-}
-
-static t_pushswap	*ft_split_numbers(char	**strs, t_pushswap *pushswap)
-{
-	int	i;
-	int	count;
-	int	*numbers;
-
-	i = 0;
-	count = 0;
-	numbers = ft_count_valid_ints(strs);
-	if (!pushswap)
-		return (NULL);
-	while (strs[i])
-	{
-		if (ft_valid_int(strs[i]))
-		{
-			numbers[count] = ft_atoi(strs[i]);
-			count++;
-		}
-		else if (!ft_valid_selector(strs[i]))
-			return (free(numbers), NULL);
-		i++;
-	}
-	if (ft_duplicated(numbers, count))
-		return ((*pushswap)->valid = 0, NULL);
-	(*pushswap)->numbers_size = count;
-	return (*pushswap);
-}
-
-static t_pushswap	*ft_pushswap_init(void)
-{
-	t_pushswap	*init;
-
-	init = malloc(sizeof(t_pushswap));
-	if (!init)
-		return (NULL);
-	init->joined_args = NULL;
-	init->valid = 1;
-	return (init);
-}
-
-t_pushswap	*ft_parse_pushswap(int argc, char **argv)
-{
-	t_pushswap	*pushswap;
-	int			i;
-
-	pushswap = ft_pushswap_init();
-	if (!pushswap)
-		return (NULL);
-	i = 1;
-	while (i < argc)
-	{
-		pushswap->joined_args = ft_strjoin_sep(pushswap->joined_args, argv[i]);
-		i++;
-	}
-	printf("joined is %s", pushswap->joined_args);
-	if (!pushswap->joined_args)
-		return (free(pushswap), NULL);
-	printf("joined is %s", pushswap->joined_args);
-	pushswap->splitted = ft_split(pushswap->joined_args, ' ');
-	pushswap->numbers = ft_split_numbers(pushswap->splitted, &pushswap);
-	pushswap = ft_find_selector(pushswap->splitted, &pushswap);
-	pushswap->bench = ft_find_bench(argc, argv);
-	if (!pushswap->valid)
-		return (free(pushswap), NULL);
-	return (pushswap);
+	ft_strlcpy((*a)->strategy, strategy, ft_strlen(strategy));
+	ft_strlcpy((*a)->strategy, complexity, ft_strlen(complexity));
 }

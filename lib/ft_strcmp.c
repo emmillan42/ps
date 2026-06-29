@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bench_utils.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 17:09:17 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/25 17:09:31 by durisosa         ###   ########.fr       */
+/*   Created: 2026/06/29 21:15:12 by durisosa          #+#    #+#             */
+/*   Updated: 2026/06/29 21:15:27 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_print_bench(t_pushswap *pushswap)
+int	ft_strcmp(char *s1, char *s2)
 {
-	return ;
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }

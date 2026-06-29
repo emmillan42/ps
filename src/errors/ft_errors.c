@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_stack.c                                   :+:      :+:    :+:   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 18:02:10 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 11:16:38 by durisosa         ###   ########.fr       */
+/*   Created: 2026/06/29 21:34:36 by durisosa          #+#    #+#             */
+/*   Updated: 2026/06/29 21:35:43 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_parse_stack(int *numbers, int numbers_size)
+int	ft_exit_error(int code)
 {
-	t_stack	*stack;
-	int		i;
-
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	i = -1;
-	while (++i < numbers_size)
-		ft_stackadd_back(&stack, ft_stacknew(numbers[i]));
+	ft_putstr_fd("Error\n", 2);
+	exit(code);
 }
+
+int	ft_return_error(int print)
+{
+	if (print)
+		ft_putstr_fd("Error\n", 2);
+	return (1);
+}
+

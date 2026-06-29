@@ -18,14 +18,15 @@ CFILES = push_swap.c \
 	operations/rotate/ft_rotate.c \
 	operations/swap/ft_swap.c \
 	operations/reverse/ft_reverse.c \
-	parsing/ft_parse.c \
-	parsing/ft_parse_stack.c \
-	parsing/ft_parse_utils.c \
-	parsing/ft_parse_utils_2.c \
-	utils/ft_utils.c \
-	utils/ft_bench.c \
-	utils/ft_stack_utils.c \
-	utils/ft_stack_utils_2.c \
+	parse/ft_parse.c \
+	parse/ft_parse_flags.c \
+	parse/ft_parse_integers.c \
+	parse/ft_parse_utils.c \
+	bench/ft_bench.c \
+	bench/ft_bench_utils.c \
+	stack/ft_stack_init.c \
+	stack/ft_stack_utils.c \
+	stack/ft_stack_utils_2.c \
 
 TESTFILES = tests/test_disorder.c \
 tests/test_helper.c \

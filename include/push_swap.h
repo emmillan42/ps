@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 17:46:38 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/29 21:37:22 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@
 	If no selector is given it defaults to adaptive, which then
 	selects a strategy (can only be simple, medium, or complex).
 */
-typedef struct s_stack
-{
-	t_node		*head;
-	t_node		*tail;
-	int			size;
-	char		*strategy_arg;
-	char		*strategy;
-	char		*strategy_complexity;
-	double		disorder;
-	t_benchmark	*bench;
-}	t_stack;
-
 typedef struct s_benchmark
 {
 	int		ops_count;
@@ -60,51 +48,62 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-//STACK UTILS
-void		ft_stackinit(t_stack **stack, int argc, char **argv);
-t_stack		*ft_stacknew(void);
-t_node		*ft_stacklast(t_stack *stack);
-void		ft_stackadd_back(t_stack **stack, t_node *new);
-int			ft_stacksize(t_stack *stack);
-void		ft_free_stack(t_stack **stack);
-int			ft_stacksorted(t_stack *stack);
+typedef struct s_stack
+{
+	t_node		*head;
+	t_node		*tail;
+	int			size;
+	char		*strategy_arg;
+	char		*strategy;
+	char		*strategy_complexity;
+	int			print;
+	double		disorder;
+	t_benchmark	*bench;
+}	t_stack;
 
-//SORTING
-void		ft_sort_method(t_stack **stack_a, t_stack **stack_b);
-void		ft_sort_three(t_stack **stack);
 
-//PUSHSWAP STRUCT
-void		ft_parse_pushswap(t_stack **a, t_stack **b, int argc, char **argv);
-
-//UTILS
+//PARSE UTILS
+int			ft_return_error(int print);
+int			ft_exit_error(int code);
+int			ft_parse_pushswap(t_stack **a, t_stack **b, int argc, char **argv);
+int			ft_valid_args(int argc, char **argv);
+int			ft_valid_args_split(char *str, int *strategy_count);
 void		ft_exit(int error);
-void		ft_printstack(t_stack *stack);
+void		ft_free_split(char **split);
 int			ft_strcmp(char *s1, char *s2);
-float		ft_compute_disorder(int *numbers, int size);
+int			ft_isflag_pushswap(char *str);
+int			ft_valid_istr(char *istr);
+double		ft_compute_disorder(t_stack *stack);
+int			ft_parse_integers(t_stack **a, int argc, char **argv);
+int			ft_parse_integers_split(t_stack **a, char *str, int *stop);
+int			ft_duplicated(t_stack *a);
+int			ft_parse_flags(t_stack **a, int argc, char **argv);
+int			ft_parse_flags_split(t_stack **a, char *str, int *stop);
+void		ft_stack_setflag(t_stack **a, char *str);
 
 //STACK UTILS
 t_node		*ft_node_new(int value, int index);
 t_stack		*ft_parse_stack(int *numbers, int numbers_size);
 int			ft_stacksize(t_stack *stack);
-void		ft_free_stack(t_stack **stack);
+int			ft_stacksorted(t_stack *stack);
 void		ft_stackindex(t_stack *stack);
-int			ft_issorted(int *numbers, int size);
 int			ft_index(t_stack *stack, int target);
 int			ft_indexrel(t_stack *stack, int target);
-void		ft_printstack(t_stack *stack);
+void		ft_print_stack(t_stack *stack);
+void		ft_free_stack(t_stack *stack);
+t_stack		*ft_stacklast(t_stack *stack);
+void		ft_stack_index(t_stack **stack);
+void		ft_stack_setflag(t_stack **a, char *str);
 
 //BENCH_UTILS
 void		ft_print_bench(t_stack *stack);
+t_benchmark	*ft_bench_new(void);
 
-//PARSE UTILS
-int			ft_isspace(char c);
-int			ft_isspace_str(const char *str);
-int			ft_valid_int(char *nbrstr);
-int			ft_int_range(long n);
-char		*ft_strjoin_sep(char *prev, char *new);
-int			ft_find_bench(int argc, char **argv);
-int			ft_valid_selector(char *str);
-int			ft_duplicated(int *arr, int size);
+//SORTING
+void		ft_sort_strategy(t_stack **a, t_stack **b);
+void		ft_sort_simple(t_stack **a, t_stack **b);
+void		ft_sort_medium(t_stack **a, t_stack **b);
+void		ft_sort_complex(t_stack **a, t_stack **b);
 
 //OPERATIONS
 void		ft_pa(t_stack *a, t_stack *b);
@@ -118,6 +117,7 @@ void		ft_rrb(t_stack *b);
 void		ft_ss(t_stack *a, t_stack *b);
 void		ft_rr(t_stack *a, t_stack *b);
 void		ft_rrr(t_stack *a, t_stack *b);
+
 void		ft_push(t_stack *dest, t_stack *src);
 void		ft_swap(t_stack *stack);
 void		ft_rotate(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 11:36:34 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 17:42:35 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/29 21:16:51 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,40 +40,64 @@ t_stack	*ft_stack_new(void)
 	return (stack);
 }
 
-void	ft_stackadd_back(t_stack **stack, t_node *new)
+void	ft_stack_setflag(t_stack **a, char *str)
 {
-	t_node	*node;
-
-	if (!stack || !*stack || !node)
+	if (!a || !*a || !str)
 		return ;
-	new->prev = ft_stacklast(*stack);
-	new->next = NULL;
-	node = (*stack)->head;
-	if (!node)
-	{
-		(*stack)->head = new;
-		(*stack)->tail = new;
-	}
-	else
-	{
-		while (node->next != NULL)
-			node = node->next;
-		node->next = new;
-	}
-	(*stack)->size++;
+	if (ft_strcmp("--adaptive", str) == 0)
+		ft_strlcpy((*a)->strategy, "--adaptive", 10);
+	else if (ft_strcmp("--simple", str) == 0)
+		ft_strlcpy((*a)->strategy, "--simple", 8);
+	else if (ft_strcmp("--medium", str) == 0)
+		ft_strlcpy((*a)->strategy, "--medium", 8);
+	else if (ft_strcmp("--complex", str) == 0)
+		ft_strlcpy((*a)->strategy, "--complex", 8);
+	else if (ft_strcmp("--bench", str) == 0)
+		ft_strlcpy((*a)->strategy, "--bench", 7);
 }
 
-void	ft_stackadd_front(t_stack **stack, t_node *new)
+void	ft_stack_index(t_stack **stack)
 {
 	t_node	*node;
+	t_node	*tmp;
+	int		i;
 
-	if (!stack || !*stack || !node)
+	if (!stack)
 		return ;
-	new->prev = NULL;
+	i = 0;
 	node = (*stack)->head;
-	new->next = node;
-	if (!node)
-		(*stack)->tail = new;
-	(*stack)->head = new;
-	(*stack)->size++;
+	while (node != NULL)
+	{
+		tmp = node;
+		i = 0;
+		while (tmp != NULL)
+		{
+			if (tmp->value < node->value)
+				i++;
+			tmp = tmp->next;
+		}
+		node->index = i;
+		node = node->next;
+	}
+}
+
+void	ft_free_stack(t_stack *stack)
+{
+	t_node	*node;
+	t_node	*tmp;
+
+	node = stack->head;
+	while (node)
+	{
+		tmp = node;
+		node = node->next;
+		free(tmp);
+	}
+	stack->head = NULL;
+	stack->tail = NULL;
+	stack->size = 0;
+	if (stack->bench)
+		free(stack->bench);
+	stack->bench = NULL;
+	free(stack);
 }

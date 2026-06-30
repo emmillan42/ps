@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:13:25 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 21:15:36 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:11:57 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**ft_split(const char *s, char c);
 /* FILE DESCRIPTORS -----------------------------------------------------  */
 
 void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(const char *s, int fd);
+void	ft_putstr_fd(char *s, int fd);
 
 /* PRINTF ---------------------------------------------------------------  */
 

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:59:26 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 20:50:46 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:57:02 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_parse_integers(t_stack **a, int argc, char **argv)
 		j = 0;
 		while (split[j] && !stop)
 		{
-			if (!ft_parse_integers_split(a, split[j], &stop))
+			if (!ft_parse_integers_split(*a, split[j], &stop))
 				return (ft_free_split(split), 0);
 			j++;
 		}
@@ -53,7 +53,7 @@ int	ft_parse_integers(t_stack **a, int argc, char **argv)
 	return (1);
 }
 
-int	ft_parse_integers_split(t_stack **a, char *str, int *stop)
+int	ft_parse_integers_split(t_stack *a, char *str, int *stop)
 {
 	long	value;
 
@@ -64,7 +64,7 @@ int	ft_parse_integers_split(t_stack **a, char *str, int *stop)
 	value = ft_atol(str);
 	if (!(value >= INT_MIN && value <= INT_MAX))
 		return (0);
-	ft_stackadd_back(a, ft_node_new(value, 0));
+	ft_stackadd_back(&a, ft_node_new(value, 0));
 	if (ft_duplicated(a))
 		return (1);
 	return (1);
@@ -92,4 +92,27 @@ int	ft_duplicated(t_stack *stack)
 	return (0);
 }
 
+long	ft_atol(char *str)
+{
+	int		i;
+	long	result;
+	int		sign;
 
+	i = 0;
+	result = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}

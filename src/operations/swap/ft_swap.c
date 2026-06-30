@@ -6,49 +6,60 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 17:32:43 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/26 17:52:45 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 12:20:09 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack **stack)
+void	ft_swap(t_stack *stack)
 {
-	t_stack	*tmp;
+	t_node	*first;
+	t_node	*second;
 
-	if (!stack || !*stack || (*stack)->next == NULL)
+	if (!stack || stack->size <= 1)
 		return ;
-	tmp = *stack;
-	(*stack) = (*stack)->next;
-	tmp->next = (*stack)->next;
-	(*stack)->next = tmp;
+	first = stack->head;
+	second = first->next;
+	first->next = second->next;
+	first->prev = second;
+	second->next = first;
+	second->prev = NULL;
+	stack->head = second;
+	if (stack->size == 2)
+		stack->tail = first;
 }
 
-void	ft_sa(t_stack **a, t_pushswap *pushswap)
+void	ft_sa(t_stack *a)
 {
-	if (!a || !*a || (*a)->next == NULL)
-		return ;
-	pushswap->sa_count++;
 	ft_swap(a);
+	if (a->bench)
+	{
+		a->bench->ops_count++;
+		a->bench->sa_count++;
+	}
 	write(1, "sa\n", 3);
 }
 
-void	ft_sb(t_stack **b, t_pushswap *pushswap)
+void	ft_sb(t_stack *b)
 {
-	if (!b || !*b || (*b)->next == NULL)
-		return ;
-	pushswap->sa_count++;
 	ft_swap(b);
+	if (b->bench)
+	{
+		b->bench->ops_count++;
+		b->bench->sb_count++;
+	}
 	write(1, "sb\n", 3);
 }
 
-void	ft_ss(t_stack **a, t_stack **b, t_pushswap *pushswap)
+void	ft_ss(t_stack *a, t_stack *b)
 {
-	if ((!a || !*a || (*a)->next == NULL)
-		|| (!b || !*b || (*b)->next == NULL))
-		return ;
-	pushswap->ss_count++;
 	ft_swap(a);
 	ft_swap(b);
+	if (a->bench)
+	{
+		a->bench->ops_count++;
+		a->bench->ss_count++;
+	}
 	write(1, "ss\n", 3);
 }

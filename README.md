@@ -12,8 +12,8 @@ Update for June 29th, as passing the s_pushswap struct to each function was too 
 //how to parse the args? or me the most straightforward and simple solution is
 //to take the args, split if necessary, if not, just traverse each arg and convert to nbr with atol
 //if there is a syntax error, throw error.
-//ft_error sounds simple
-//but can I do a simple program that takes the args, create two stacks, and simply push all numnbers on to b and then rotate? and print the movement and the stacks at the end
+
+
 
 # Instructions
 
@@ -46,9 +46,21 @@ b. Filter best Stack Overflow answers to my questions
 c. Summary information available on the internet
 d. Investigating which smaller skills were needed to successfully understand this topic.
 
-## About the program
+## FAQs
 
 ### Testing
 
 I want to run a test command that is able to compile my mains and run different tests
 But why to do that if other people already made a good test, if my solution parses then it should be able to receive simple input from those tests, or to be used as a usable tool, right?
+
+### Why this code pass the stacks by reference from the main function to every other called function?
+
+Because after contemplating possible pros and cons, it was clear enough to work with the address of the stacks themselves rather than their values.
+
+| pros                                                                                                                                                                   | cons                                                                                                                                      |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Performance: Passing a pointer avoids copying large data structures, as only the fixed-size address (typically 8 bytes on modern architectures) is faster to transfer. | Memory Safety Hazards: Pointers can be NULL or invalid, leading to segmentation faults if not carefully validated before dereferencing    |
+| Modification of Original Data: The called function can directly modify the original variable in memory                                                                 | Debugging Complexity: It is harder to track state changes because the variable's value can be altered by any function holding its pointer |
+|                                                                                                                                                                        |                                                                                                                                           |
+
+Tables made with [tables generator](https://tablesgenerator.com/markdown_tables#)

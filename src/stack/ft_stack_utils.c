@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 21:17:33 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:57:31 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print_stack(t_stack *stack)
 	ft_printf("\n-------- end of stack --------");
 }
 
-t_stack	*ft_stacklast(t_stack *stack)
+t_node	*ft_stacklast(t_stack *stack)
 {
 	t_node	*node;
 

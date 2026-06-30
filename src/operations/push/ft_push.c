@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 10:18:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 20:59:39 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 11:59:16 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,47 @@
 
 void	ft_pa(t_stack *a, t_stack *b)
 {
-	if (!b)
+	if (!a || !b)
 		return ;
 	ft_push(a, b);
 	if (a->bench)
+	{
 		a->bench->pa_count++;
+		a->bench->ops_count++;
+	}
 	write(1, "pa\n", 3);
 }
 
 void	ft_pb(t_stack *a, t_stack *b)
 {
-	if (!a)
+	if (!a || !b)
 		return ;
 	ft_push(b, a);
 	if (a->bench)
+	{
 		a->bench->pb_count++;
+		a->bench->ops_count++;
+	}
 	write(1, "pb\n", 3);
 }
 
-void	ft_push(t_stack *dest, t_stack *src)
+/*
+push first node from src to be the new b's first node.
+src's second node becomes the new a's first node.
+*/
+void	ft_push(t_stack *dst, t_stack *src)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
-	if (!src)
+	if (!src || !dst)
 		return ;
+	tmp = src->head;
+	src->head = src->head->next;
+	tmp->next = dst->head;
+	tmp->prev = NULL;
+	dst->head = tmp;
+	if (dst->size == 0)
+		dst->tail = tmp;
+	dst->size++;
+	src->size--;
 }

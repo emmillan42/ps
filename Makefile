@@ -22,11 +22,12 @@ CFILES = push_swap.c \
 	parse/ft_parse_flags.c \
 	parse/ft_parse_integers.c \
 	parse/ft_parse_utils.c \
-	bench/ft_bench.c \
-	bench/ft_bench_utils.c \
 	stack/ft_stack_init.c \
 	stack/ft_stack_utils.c \
 	stack/ft_stack_utils_2.c \
+	bench/ft_bench.c \
+	bench/ft_bench_utils.c \
+	errors/ft_errors.c
 
 TESTFILES = tests/test_disorder.c \
 tests/test_helper.c \

@@ -6,7 +6,7 @@
 #    By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/26 13:30:23 by durisosa          #+#    #+#              #
-#    Updated: 2026/06/29 21:15:41 by durisosa         ###   ########.fr        #
+#    Updated: 2026/06/30 15:10:55 by durisosa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ ft_isdigit.c \
 ft_strlcpy.c \
 ft_split.c \
 ft_isspace.c \
+ft_putstr_fd.c \
+ft_putchar_fd.c \
 printf/ft_flags_utils.c \
 printf/ft_flags.c printf/ft_printf.c \
 printf/ft_printc.c printf/ft_printf_utils.c \

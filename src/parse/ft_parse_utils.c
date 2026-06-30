@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 21:35:21 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 13:48:24 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,27 @@ int	ft_isflag_pushswap(char *str)
 	else if (ft_strncmp("--adaptative", str, strlen))
 		return (1);
 	else if (ft_strncmp("--bench", str, strlen))
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_isstrategy(char *str)
+{
+	size_t	strlen;
+
+	if (!str)
+		return (0);
+	if (ft_strncmp(str, "--", 2) != 0)
+		return (0);
+	strlen = ft_strlen(str);
+	if (ft_strncmp("--simple", str, strlen))
+		return (1);
+	else if (ft_strncmp("--medium", str, strlen))
+		return (1);
+	else if (ft_strncmp("--complex", str, strlen))
+		return (1);
+	else if (ft_strncmp("--adaptative", str, strlen))
 		return (1);
 	else
 		return (0);

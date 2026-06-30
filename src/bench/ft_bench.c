@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 13:34:02 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/29 21:37:10 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 14:52:23 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ t_benchmark	*ft_bench_new(void)
 		return (NULL);
 	ft_bzero(bench, sizeof(t_benchmark));
 	return (bench);
+}
+
+int	ft_bench_init(t_stack *a, t_stack *b)
+{
+	t_benchmark	*bench;
+
+	if (!a || !b)
+		ft_exit_error(1);
+	bench = ft_bench_new();
+	if (!bench)
+		return (0);
+	a->bench = bench;
+	b->bench = bench;
+	return (1);
 }
 
 void	ft_print_bench(t_stack *a)

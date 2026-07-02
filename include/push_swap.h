@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 11:13:50 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:38:49 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ typedef struct s_benchmark
 
 typedef struct s_node
 {
-	long			value;
-	long			index;
+	int				value;
+	int				index;
+	int				position;
+	int				cost;
+	int				above_median;
+	int				cheapest;
+	struct s_node	*target;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;

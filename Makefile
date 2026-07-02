@@ -18,6 +18,7 @@ CFILES = push_swap.c \
 	operations/rotate/ft_rotate.c \
 	operations/swap/ft_swap.c \
 	operations/reverse/ft_reverse.c \
+	parse/ft_valid_args.c \
 	parse/ft_parse.c \
 	parse/ft_parse_flags.c \
 	parse/ft_parse_integers.c \
@@ -51,7 +52,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(INCLUDE) -o $@ 
+	$(CC) $(FLAGS) -g $(OBJS) $(LIBFT) $(INCLUDE) -o $@ 
 
 clean:
 	@make -C $(LIBFT_DIR) clean

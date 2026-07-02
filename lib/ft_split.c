@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:41:33 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/27 19:27:14 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:18:00 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	count_words(const char *s, char c)
 
 	i = 0;
 	count = 0;
-	printf("count is %d", count);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)
@@ -106,7 +105,6 @@ char	**ft_split(const char *s, char c)
 	if (!split)
 		return (NULL);
 	split = ft_execute_split(split, s, c);
-	printf("split to %s", split[1]);
 	if (!split)
 		return (ft_free_split(split));
 	return (split);

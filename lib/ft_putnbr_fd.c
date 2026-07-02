@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_utils_2.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 17:53:21 by durisosa         ###   ########.fr       */
+/*   Created: 2026/05/22 21:00:08 by mapena-z          #+#    #+#             */
+/*   Updated: 2026/07/02 11:14:48 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_index(t_stack *stack, int target)
+void	ft_putnbr_fd(int n, int fd)
 {
-	return (-1);
-}
+	char	c;
+	long	nbr;
 
-int	ft_indexrel(t_stack *stack, int target)
-{
-	return (-1);
-}
-
-int	ft_stacksorted(t_stack *stack)
-{
-	t_node	*head;
-	t_node	*tmp;
-
-	if (!stack)
-		return (1);
-	head = stack->head;
-	while (head)
+	nbr = n;
+	if (nbr < 0)
 	{
-		tmp = head;
-		while (tmp)
-		{
-			if (head->value < tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-		head = head->next;
+		write(fd, "-", 1);
+		nbr = -nbr;
 	}
-	return (1);
+	if (nbr > 9)
+		ft_putnbr_fd(nbr / 10, fd);
+	c = nbr % 10 + '0';
+	write(fd, &c, 1);
 }

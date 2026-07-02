@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 20:28:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 13:56:18 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/01 21:51:11 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,61 +18,40 @@ activate the flags that are found
 errors like more than one flag or invalid flags are already checked
 returns error if an invalid input is found, ignore numbers
 */
-int	ft_parse_flags(t_stack **a, t_stack **b, int argc, char **argv)
+int	ft_parse_flags(t_stack *a, char **split)
 {
-	char	**split;
-	int		stop;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	stop = 0;
-	while (i < argc && !stop)
+	while (split[i])
 	{
-		split = ft_split(argv[i], ' ');
-		if (!split || !split[0])
-			return (ft_free_split(split), 0);
-		j = 0;
-		while (split[j] && !stop)
+		if (ft_isflag_ps(split[i]))
 		{
-			if (!ft_parse_flags_split(*a, *b, split[j], &stop))
-				return (ft_free_split(split), 0);
-			j++;
+			if (!ft_setflag_ps(a, split[i]))
+				return (0);
 		}
-		ft_free_split(split);
 		i++;
 	}
-	ft_free_split(split);
-	return (1);
+	if (!a->strategy_arg)
+		a->strategy_arg = NULL;
 }
 
-int	ft_parse_flags_split(t_stack *a, t_stack *b, char *str, int *stop)
-{
-	if (ft_isflag_pushswap(str))
-	{
-		if (!ft_parse_flags_setflag(a, b, str))
-			return (0);
-	}
-	if (a->strategy != NULL && a->bench != NULL)
-		*stop = 1;
-	return (1);
-}
-
-int	ft_parse_flags_setflag(t_stack *a, t_stack *b, char *str)
+int	ft_setflag_ps(t_stack *a, char *str)
 {
 	if (!a || !str)
 		return (0);
 	if (ft_strcmp("--adaptive", str) == 0)
-		ft_stack_setstrategies(a, "adaptive", "adaptive");
+		a->strategy_arg = str;
 	else if (ft_strcmp("--simple", str) == 0)
-		ft_stack_setstrategies(a, "simple", "simple");
+		a->strategy_arg = str;
 	else if (ft_strcmp("--medium", str) == 0)
-		ft_stack_setstrategies(a, "medium", "medium");
+		a->strategy_arg = str;
 	else if (ft_strcmp("--complex", str) == 0)
-		ft_stack_setstrategies(a, "complex", "complex");
+		a->strategy_arg = str;
 	else if (ft_strcmp("--bench", str) == 0)
 	{
-		if (!ft_bench_init(a, b))
+		a->bench = ft_bench_new();
+		if (!a->bench)
 			return (0);
 	}
 	return (1);
@@ -80,8 +59,12 @@ int	ft_parse_flags_setflag(t_stack *a, t_stack *b, char *str)
 
 void	ft_stack_setstrategies(t_stack *a, char *s1, char *s2)
 {
-	if (!s1 || !s2)
-		return ;
-	ft_strlcpy(a->strategy_arg, s1, ft_strlen(s1));
-	ft_strlcpy(a->strategy, s2, ft_strlen(s2));
+	// if (!a || !s1 || !s2)
+	// 	return ;
+	// a->strategy_arg = s1;
+	// if (a && a->bench)
+	// {
+	// 	a->bench->strategy_title = s2;
+	// 	a->bench->complexity = s2;
+	// }
 }

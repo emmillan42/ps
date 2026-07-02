@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 15:07:40 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:21:07 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,25 @@ int	main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
+	char		*argv_str;
+	char		**argv_split;
 
 	if (argc < 2)
 		return (1);
-	a = NULL;
-	b = NULL;
-	if (!ft_valid_args(argc, argv))
-		return (ft_return_error(1));
-	if (!ft_parse_pushswap(&a, &b, argc, argv))
-		return (ft_return_error(1));
+	argv_str = ft_strjoin_args(argc, argv);
+	if (!argv_str)
+		ft_exit_error(1);
+	argv_split = ft_split(argv_str, ' ');
+	if (!argv_split)
+		return (free(argv_str), ft_exit_error(1));
+	if (!ft_valid_args(argv_split))
+		return (free(argv_str), ft_free_split(argv_split), ft_exit_error(1));
+	if (!ft_parse_pushswap(&a, argv_split))
+		return (free(argv_str), ft_free_split(argv_split), ft_exit_error(1));
 	if (!ft_stacksorted(a))
 		ft_sort_strategy(&a, &b);
-	if (!!a->bench)
+	if (a && a->bench != NULL)
 		ft_print_bench(a);
-	return (ft_free_stack(a), ft_free_stack(b), 0);
-}
-
-int	ft_stacksorted(t_stack *stack)
-{
-	t_node	*head;
-	t_node	*tmp;
-
-	if (!stack)
-		return (0);
-	head = stack->head;
-	while (head)
-	{
-		tmp = head;
-		while (tmp)
-		{
-			if (head->value < tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-		head = head->next;
-	}
-	return (1);
+	return (free(argv_str), ft_free_split(argv_split),
+		ft_free_stack(a), ft_free_stack(b), 0);
 }

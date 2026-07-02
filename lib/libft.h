@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:13:25 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 15:11:57 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:15:16 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* CHARS ---------------------------------------------------------------  */
 
+void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -73,6 +74,7 @@ char	**ft_split(const char *s, char c);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 /* PRINTF ---------------------------------------------------------------  */
 

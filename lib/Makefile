@@ -6,7 +6,7 @@
 #    By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/26 13:30:23 by durisosa          #+#    #+#              #
-#    Updated: 2026/06/30 15:10:55 by durisosa         ###   ########.fr        #
+#    Updated: 2026/07/02 11:15:00 by durisosa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ INCLUDE = -I.
 
 CFILES = ft_atoi.c \
 ft_strlen.c \
+ft_calloc.c \
 ft_strdup.c \
 ft_strncmp.c \
 ft_strcmp.c \
@@ -26,10 +27,12 @@ ft_bzero.c \
 ft_count_words.c \
 ft_isdigit.c \
 ft_strlcpy.c \
+ft_strdup.c \
 ft_split.c \
 ft_isspace.c \
 ft_putstr_fd.c \
 ft_putchar_fd.c \
+ft_putnbr_fd.c \
 printf/ft_flags_utils.c \
 printf/ft_flags.c printf/ft_printf.c \
 printf/ft_printc.c printf/ft_printf_utils.c \

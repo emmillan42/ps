@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 14:57:44 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:13:50 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct s_benchmark
 	int		rr_count;
 	int		ss_count;
 	int		rrr_count;
+	char	*strategy;
+	char	*complexity;
+	double	disorder;
 }	t_benchmark;
 
 typedef struct s_node
@@ -54,36 +57,31 @@ typedef struct s_stack
 	t_node		*tail;
 	int			size;
 	char		*strategy_arg;
-	char		*strategy;
-	char		*complexity;
-	int			print;
-	double		disorder;
 	t_benchmark	*bench;
+	int			print;
 }	t_stack;
 
-//PARSE UTILS
+
+//ERRORS
 int			ft_return_error(int print);
 int			ft_exit_error(int code);
+
+//PARSE UTILS
+int			ft_valid_args(char **argv_split);
+int			ft_parse_pushswap(t_stack **a, char **argv_split);
+int			ft_parse_flags(t_stack *a, char **split);
+int			ft_parse_integers(t_stack *a, char **split);
+char		*ft_strjoin_args(int argc, char **argv);
+char		*ft_strjoin_sep(char *prev, char *src);
 void		ft_free_split(char **split);
-int			ft_parse_pushswap(t_stack **a, t_stack **b, int argc, char **argv);
-int			ft_valid_args(int argc, char **argv);
-int			ft_valid_args_split(char *str, int *strategy_count);
-double		ft_compute_disorder(t_stack *stack);
-int			ft_parse_integers(t_stack **a, int argc, char **argv);
-int			ft_parse_integers_split(t_stack *a, char *str, int *stop);
-int			ft_duplicated(t_stack *a);
-int			ft_parse_flags(t_stack **a, t_stack **b, int argc, char **argv);
-int			ft_parse_flags_split(t_stack *a, t_stack *b,
-				char *str, int *stop);
-int			ft_parse_flags_setflag(t_stack *a, t_stack *b, char *str);
-int			ft_isflag_pushswap(char *str);
-int			ft_isstrategy(char *str);
+int			ft_setflag_ps(t_stack *a, char *str);
+int			ft_isflag_ps(char *str);
 int			ft_valid_istr(char *istr);
+double		ft_compute_disorder(t_stack *stack);
 long		ft_atol(char *str);
-int			ft_strcmp(char *s1, char *s2);
 
 //STACK UTILS
-t_node		*ft_node_new(int value, int index);
+t_node		*ft_node_new(int value);
 t_stack		*ft_stack_new(void);
 void		ft_free_stack(t_stack *stack);
 void		ft_print_stack(t_stack *stack);
@@ -96,13 +94,20 @@ int			ft_indexrel(t_stack *stack, int target);
 void		ft_stack_setstrategies(t_stack *a, char *s1, char *s2);
 void		ft_stack_setnames(t_stack *a, char *s1, char *s2);
 int			ft_stack_init(t_stack *stack);
-void		ft_stackadd_back(t_stack **stack, t_node *new);
-void		ft_stackadd_front(t_stack **stack, t_node *new);
+void		ft_stackadd_back(t_stack *stack, t_node *new);
+void		ft_stackadd_front(t_stack *stack, t_node *new);
 
 //BENCH_UTILS
 t_benchmark	*ft_bench_new(void);
-int			ft_bench_init(t_stack *a, t_stack *b);
+void		ft_bench_init(t_stack *a);
+void		ft_bench_set_titles(t_benchmark *bench, char *s1, char *s2);
+void		ft_bench_choose_strategy(t_benchmark *bench);
 void		ft_print_bench(t_stack *stack);
+void		ft_putdisorder_fd(double disorder, int fd);
+void		ft_pulabel_fd(const char *label, int number, int fd);
+void		ft_print_bench_fd(t_benchmark *bench, int fd);
+void		print_ops_group1(t_benchmark *bench, int fd);
+void		print_ops_group2(t_benchmark *bench, int fd);
 
 //SORT AND SORT UTILS
 void		ft_sort_simple(t_stack *a, t_stack *b);

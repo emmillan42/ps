@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 14:57:31 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/30 20:47:42 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_print_stack(t_stack *stack)
 
 	count = 0;
 	ft_printf("-------- begin of stack --------\n");
-
 	ft_printf("\n-------- end of stack --------");
 }
 
@@ -51,40 +50,35 @@ int	ft_stacksize(t_stack *stack)
 	return (i);
 }
 
-void	ft_stackadd_back(t_stack **stack, t_node *new)
+void	ft_stackadd_back(t_stack *stack, t_node *new)
 {
-	t_node	*node;
-
-	if (!stack || !*stack || !node)
+	if (!stack || !new)
 		return ;
-	new->prev = ft_stacklast(*stack);
 	new->next = NULL;
-	node = (*stack)->head;
-	if (!node)
+	if (stack->size == 0)
 	{
-		(*stack)->head = new;
-		(*stack)->tail = new;
+		stack->head = new;
+		stack->tail = new;
 	}
 	else
 	{
-		while (node->next != NULL)
-			node = node->next;
-		node->next = new;
+		stack->tail->next = new;
+		stack->tail = new;
 	}
-	(*stack)->size++;
+	stack->size++;
 }
 
-void	ft_stackadd_front(t_stack **stack, t_node *new)
+void	ft_stackadd_front(t_stack *stack, t_node *new)
 {
 	t_node	*node;
 
-	if (!stack || !*stack || !node)
+	if (!stack || !node)
 		return ;
 	new->prev = NULL;
-	node = (*stack)->head;
+	node = stack->head;
 	new->next = node;
 	if (!node)
-		(*stack)->tail = new;
-	(*stack)->head = new;
-	(*stack)->size++;
+		stack->tail = new;
+	stack->head = new;
+	stack->size++;
 }

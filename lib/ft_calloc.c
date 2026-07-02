@@ -1,45 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_utils_2.c                                 :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 17:53:21 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/06/03 14:24:17 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_index(t_stack *stack, int target)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	return (-1);
-}
+	void	*ptr;
 
-int	ft_indexrel(t_stack *stack, int target)
-{
-	return (-1);
-}
-
-int	ft_stacksorted(t_stack *stack)
-{
-	t_node	*head;
-	t_node	*tmp;
-
-	if (!stack)
-		return (1);
-	head = stack->head;
-	while (head)
-	{
-		tmp = head;
-		while (tmp)
-		{
-			if (head->value < tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-		head = head->next;
-	}
-	return (1);
+	if (nmemb != 0 && size > (size_t)-1 / nmemb)
+		return (NULL);
+	ptr = (void *) malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }

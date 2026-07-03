@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 11:38:49 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/03 22:00:22 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ void		ft_sort_three(t_stack *stack);
 void		ft_sort_strategy(t_stack **a, t_stack **b);
 int			ft_max_index(t_stack *stack);
 int			ft_min_index(t_stack *stack);
+
+//METADATA
+
+t_node		*find_smallest_unindexed(t_stack *stack);
+void		assign_indexes(t_stack *stack);
 
 //OPERATIONS
 void		ft_pa(t_stack *a, t_stack *b);

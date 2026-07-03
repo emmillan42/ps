@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_utils_2.c                                 :+:      :+:    :+:   */
+/*   ft_sort_simple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 17:53:21 by durisosa         ###   ########.fr       */
+/*   Created: 2026/06/27 17:45:39 by durisosa          #+#    #+#             */
+/*   Updated: 2026/07/03 22:24:11 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_index(t_stack *stack, int target)
+void	ft_sort_simple(t_stack *a, t_stack *b)
 {
-	return (-1);
-}
-
-int	ft_indexrel(t_stack *stack, int target)
-{
-	return (-1);
-}
-
-int	ft_stacksorted(t_stack *stack)
-{
-	t_node	*head;
 	t_node	*tmp;
+	int		min_moves;
 
-	if (!stack)
-		return (1);
-	head = stack->head;
-	while (head)
+	if (a->size > 3 && !ft_stacksorte(a))
+		ft_pb(a, b);
+	if (a->size > 3 && !ft_stacksorte(a))
+		ft_pb(a, b);
+	while (a->size > 3 && !ft_stacksorte(a))
 	{
-		tmp = head;
-		while (tmp)
-		{
-			if (head->value < tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-		head = head->next;
+		tmp = a->head;
+		min_moves = ft_rrarrb_amount(a, b, tmp->index);
+		return ;
 	}
-	return (1);
 }

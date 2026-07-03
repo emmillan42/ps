@@ -5,91 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:17:01 by durisosa         ###   ########.fr       */
+/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
+/*   Updated: 2026/07/03 22:08:40 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_stack(t_stack *stack)
+void	ft_print_stack_printf(t_stack *stack)
 {
 	t_node	*node;
-	int		count;
-
-	if (!stack)
-		return ;
-	count = 0;
-	node = stack->head;
-	ft_printf("\n-------- begin of stack --------\n");
-	while (node)
-	{
-		ft_printf("[%d]: node value: %d\n", node->index, node->value);
-		node = node->next;
-	}
-	ft_printf("\n-------- end of stack --------\n");
-}
-
-t_node	*ft_stacklast(t_stack *stack)
-{
-	t_node	*node;
-
-	if (!stack)
-		return (NULL);
-	node = stack->head;
-	while (node->next != NULL)
-		node = node->next;
-	return (node);
-}
-
-int	ft_stacksize(t_stack *stack)
-{
 	int		i;
-	t_node	*node;
 
-	if (stack == NULL)
-		return (0);
-	i = 0;
-	node = stack->head;
-	while (node != NULL)
+	if (!stack)
 	{
-		i++;
-		node = node->next;
-	}
-	return (i);
-}
-
-void	ft_stackadd_back(t_stack *stack, t_node *new)
-{
-	if (!stack || !new)
+		printf("Stack: NULL\n");
 		return ;
-	new->next = NULL;
-	if (stack->size == 0)
-	{
-		stack->head = new;
-		stack->tail = new;
-		new->prev = NULL;
 	}
-	else
-	{
-		new->prev = stack->tail;
-		stack->tail->next = new;
-		stack->tail = new;
-	}
-	stack->size++;
-}
 
-void	ft_stackadd_front(t_stack *stack, t_node *new)
-{
-	t_node	*node;
-
-	if (!stack || !node)
-		return ;
-	new->prev = NULL;
-	node = stack->head;
-	new->next = node;
-	if (!node)
-		stack->tail = new;
-	stack->head = new;
-	stack->size++;
 }

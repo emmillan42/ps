@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 17:32:43 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 12:20:09 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:17:10 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,16 @@ void	ft_swap(t_stack *stack)
 void	ft_sa(t_stack *a)
 {
 	ft_swap(a);
-	if (a->bench)
-	{
-		a->bench->ops_count++;
-		a->bench->sa_count++;
-	}
+	a->ops[OP_SA]++;
+	a->ops[OP_TOTAL]++;
 	write(1, "sa\n", 3);
 }
 
 void	ft_sb(t_stack *b)
 {
 	ft_swap(b);
-	if (b->bench)
-	{
-		b->bench->ops_count++;
-		b->bench->sb_count++;
-	}
+	b->ops[OP_SB]++;
+	b->ops[OP_TOTAL]++;
 	write(1, "sb\n", 3);
 }
 
@@ -56,10 +50,7 @@ void	ft_ss(t_stack *a, t_stack *b)
 {
 	ft_swap(a);
 	ft_swap(b);
-	if (a->bench)
-	{
-		a->bench->ops_count++;
-		a->bench->ss_count++;
-	}
+	a->ops[OP_SS]++;
+	a->ops[OP_TOTAL]++;
 	write(1, "ss\n", 3);
 }

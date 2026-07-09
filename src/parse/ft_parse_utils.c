@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:38:37 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:18:00 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_valid_istr(char *istr)
 	int	i;
 
 	i = 0;
-	while (ft_isspace(istr[i]))
-		i++;
 	if (istr[i] == '-' || istr[i] == '+')
 		i++;
 	if (!istr[i] || !istr)

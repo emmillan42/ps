@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:59:26 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:56:32 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:17:51 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,25 @@
 static int	ft_count_istrs(char **split);
 static int	ft_numbers_append(int *numbers, int size, int *index, char *str);
 static int	ft_contains_value(int *numbers, int size, int value);
-static void	ft_stack_numbers(t_stack *a, int *numbers, int size);
 
-static void	ft_stack_numbers(t_stack *a, int *numbers, int size)
+static int	ft_duplicated(int *numbers, int size)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (!a)
-		return ;
 	while (i < size)
 	{
-		ft_stackadd_back(a, ft_node_new(numbers[i]));
+		j = i + 1;
+		while (j < size)
+		{
+			if (numbers[i] == numbers[j])
+				return (1);
+			j++;
+		}
 		i++;
 	}
+	return (0);
 }
 
 static int	ft_numbers_append(int *numbers, int size, int *index, char *str)
@@ -37,8 +42,6 @@ static int	ft_numbers_append(int *numbers, int size, int *index, char *str)
 
 	value = ft_atol(str);
 	if (!(value >= INT_MIN && value <= INT_MAX))
-		return (0);
-	if (ft_contains_value(numbers, size, value))
 		return (0);
 	numbers[*index] = value;
 	*index = *index + 1;
@@ -70,11 +73,14 @@ static int	ft_count_istrs(char **split)
 	i = 0;
 	count = 0;
 	stop = 0;
+	while (split[i] && !ft_valid_istr(split[i]))
+		i++;
 	while (split[i] && !stop)
 	{
 		if (!ft_valid_istr(split[i]))
 			stop = 1;
-		count++;
+		else
+			count++;
 		i++;
 	}
 	return (count);
@@ -103,23 +109,21 @@ int	ft_parse_integers(t_stack *a, char **split)
 
 	numbers = NULL;
 	size = ft_count_istrs(split);
-	numbers = ft_calloc(size, sizeof(int));
+	numbers = malloc(size * sizeof(int));
 	if (!numbers)
 		return (0);
-	stop = 0;
 	i = 0;
 	j = 0;
-	while (split[i] && !stop)
+	while (split[i] && !ft_valid_istr(split[i]))
+		i++;
+	while (split[i] && ft_valid_istr(split[i]))
 	{
-		if (!ft_valid_istr(split[i]))
-			stop = 1;
-		else
-		{
-			if (!ft_numbers_append(numbers, size, &j, split[i]))
-				return (0);
-		}
+		if (!ft_numbers_append(numbers, size, &j, split[i]))
+			return (free(numbers), 0);
 		i++;
 	}
-	ft_stack_numbers(a, numbers, size);
+	if (ft_duplicated(numbers, size))
+		return (free(numbers), 0);
+	ft_stack_init_numbers(a, numbers, size);
 	return (free(numbers), 1);
 }

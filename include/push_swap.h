@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 11:38:49 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:14:07 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,30 @@
 	If no selector is given it defaults to adaptive, which then
 	selects a strategy (can only be simple, medium, or complex).
 */
-typedef struct s_benchmark
+
+typedef enum e_strategy
 {
-	int		ops_count;
-	int		pa_count;
-	int		pb_count;
-	int		sa_count;
-	int		sb_count;
-	int		ra_count;
-	int		rb_count;
-	int		rra_count;
-	int		rrb_count;
-	int		rr_count;
-	int		ss_count;
-	int		rrr_count;
-	char	*strategy;
-	char	*complexity;
-	double	disorder;
-}	t_benchmark;
+	STRAT_SIMPLE,
+	STRAT_MEDIUM,
+	STRAT_COMPLEX,
+	STRAT_ADAPTIVE
+}	t_strategy;
+
+typedef enum e_op
+{
+	OP_SA,
+	OP_SB,
+	OP_SS,
+	OP_PA,
+	OP_PB,
+	OP_RA,
+	OP_RB,
+	OP_RR,
+	OP_RRA,
+	OP_RRB,
+	OP_RRR,
+	OP_TOTAL
+}	t_op;
 
 typedef struct s_node
 {
@@ -61,9 +67,11 @@ typedef struct s_stack
 	t_node		*head;
 	t_node		*tail;
 	int			size;
-	char		*strategy_arg;
-	t_benchmark	*bench;
-	int			print;
+	t_strategy	strategy_arg;
+	t_strategy	strategy_used;
+	double		disorder;
+	int			bench;
+	int			*ops;
 }	t_stack;
 
 
@@ -87,41 +95,56 @@ long		ft_atol(char *str);
 
 //STACK UTILS
 t_node		*ft_node_new(int value);
-t_stack		*ft_stack_new(void);
+t_stack		*ft_stack_new(int create_ops);
 void		ft_free_stack(t_stack *stack);
 void		ft_print_stack(t_stack *stack);
 void		ft_stack_index(t_stack **stack);
 int			ft_stacksize(t_stack *stack);
 int			ft_stacksorted(t_stack *stack);
 t_node		*ft_stacklast(t_stack *stack);
-int			ft_index(t_stack *stack, int target);
-int			ft_indexrel(t_stack *stack, int target);
 void		ft_stack_setstrategies(t_stack *a, char *s1, char *s2);
 void		ft_stack_setnames(t_stack *a, char *s1, char *s2);
 int			ft_stack_init(t_stack *stack);
+void		ft_stack_init_numbers(t_stack *a, int *numbers, int size);
 void		ft_stackadd_back(t_stack *stack, t_node *new);
 void		ft_stackadd_front(t_stack *stack, t_node *new);
+int			stack_find_index(t_stack *stack, int index);
+int			stack_find_pos(t_stack *stack, t_node *node);
+void		stack_index_to_top(t_stack *stack, int index, char stack_name);
+t_node		*find_smallest(t_stack *stack);
 
 //BENCH_UTILS
-t_benchmark	*ft_bench_new(void);
-void		ft_bench_init(t_stack *a);
-void		ft_bench_set_titles(t_benchmark *bench, char *s1, char *s2);
-void		ft_bench_choose_strategy(t_benchmark *bench);
 void		ft_print_bench(t_stack *stack);
-void		ft_putdisorder_fd(double disorder, int fd);
-void		ft_pulabel_fd(const char *label, int number, int fd);
-void		ft_print_bench_fd(t_benchmark *bench, int fd);
-void		print_ops_group1(t_benchmark *bench, int fd);
-void		print_ops_group2(t_benchmark *bench, int fd);
 
-//SORT AND SORT UTILS
-void		ft_sort_simple(t_stack *a, t_stack *b);
+//SORT
 void		ft_sort_four(t_stack *a, t_stack *b);
 void		ft_sort_five(t_stack *a, t_stack *b);
 void		ft_sort_three(t_stack *stack);
 void		ft_sort_strategy(t_stack **a, t_stack **b);
+void		ft_sort_units(t_stack *a, t_stack *b);
+
+//SORT SIMPLE
+void		ft_sort_simple(t_stack *a, t_stack *b);
+
+//SORT MEDIUM
+void		ft_sort_medium(t_stack *a, t_stack *b);
+
+//SORT COMPLEX
+void		ft_sort_complex(t_stack *a, t_stack *b);
+
+////SORT SIMPLE - METADATA
+t_node		*find_cheapest(t_stack *stack);
+void		update_positions(t_stack *stack);
+void		update_targets_a(t_stack *a, t_stack *b);
+void		update_targets_b(t_stack *a, t_stack *b);
+void		assign_indexes(t_stack *stack);
+void		update_costs(t_stack *a, t_stack *b);
+
+//SORT UTILS
 int			ft_max_index(t_stack *stack);
 int			ft_min_index(t_stack *stack);
+void		rotate_to_top(t_stack *stack, t_node *target, char name);
+int			int_sqrt(int n);
 
 //OPERATIONS
 void		ft_pa(t_stack *a, t_stack *b);

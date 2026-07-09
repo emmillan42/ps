@@ -5,91 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:17:01 by durisosa         ###   ########.fr       */
+/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
+/*   Updated: 2026/07/09 19:19:09 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_stack(t_stack *stack)
+int	ft_stacksorted(t_stack *stack)
 {
-	t_node	*node;
-	int		count;
+	t_node	*tmp;
 
 	if (!stack)
-		return ;
-	count = 0;
-	node = stack->head;
-	ft_printf("\n-------- begin of stack --------\n");
-	while (node)
+		return (1);
+	tmp = stack->head;
+	while (tmp && tmp->next)
 	{
-		ft_printf("[%d]: node value: %d\n", node->index, node->value);
-		node = node->next;
+		if (tmp->index > tmp->next->index)
+			return (0);
+		tmp = tmp->next;
 	}
-	ft_printf("\n-------- end of stack --------\n");
+	return (1);
 }
 
-t_node	*ft_stacklast(t_stack *stack)
+int	stack_find_index(t_stack *stack, int index)
 {
-	t_node	*node;
+	t_node	*tmp;
+	int		pos;
 
-	if (!stack)
+	if (!stack || stack->size == 0)
+		return (-1);
+	tmp = stack->head;
+	pos = 0;
+	while (tmp)
+	{
+		if (tmp->index == index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
+	}
+	return (-1);
+}
+
+/*
+ * Find the smallest value node
+*/
+t_node	*find_smallest(t_stack *stack)
+{
+	t_node	*tmp;
+	t_node	*smallest;
+	int		min;
+
+	if (NULL == stack)
 		return (NULL);
-	node = stack->head;
-	while (node->next != NULL)
-		node = node->next;
-	return (node);
-}
-
-int	ft_stacksize(t_stack *stack)
-{
-	int		i;
-	t_node	*node;
-
-	if (stack == NULL)
-		return (0);
-	i = 0;
-	node = stack->head;
-	while (node != NULL)
+	min = INT_MAX;
+	tmp = stack->head;
+	while (tmp)
 	{
-		i++;
-		node = node->next;
+		if (tmp->value < min)
+		{
+			min = tmp->value;
+			smallest = tmp;
+		}
+		tmp = tmp->next;
 	}
-	return (i);
+	return (smallest);
 }
 
-void	ft_stackadd_back(t_stack *stack, t_node *new)
+void	stack_index_to_top(t_stack *stack, int index, char stack_name)
 {
-	if (!stack || !new)
-		return ;
-	new->next = NULL;
-	if (stack->size == 0)
+	int	pos;
+
+	pos = stack_find_index(stack, index);
+	if (pos <= stack->size / 2)
 	{
-		stack->head = new;
-		stack->tail = new;
-		new->prev = NULL;
+		while (pos > 0)
+		{
+			if (stack_name == 'a')
+				ft_ra(stack);
+			else
+				ft_rb(stack);
+			pos--;
+		}
 	}
 	else
 	{
-		new->prev = stack->tail;
-		stack->tail->next = new;
-		stack->tail = new;
+		while (pos < stack->size)
+		{
+			if (stack_name == 'a')
+				ft_rra(stack);
+			else
+				ft_rrb(stack);
+			pos++;
+		}
 	}
-	stack->size++;
-}
-
-void	ft_stackadd_front(t_stack *stack, t_node *new)
-{
-	t_node	*node;
-
-	if (!stack || !node)
-		return ;
-	new->prev = NULL;
-	node = stack->head;
-	new->next = node;
-	if (!node)
-		stack->tail = new;
-	stack->head = new;
-	stack->size++;
 }

@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 10:32:48 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 12:18:58 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:16:22 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@
 void	ft_rb(t_stack *b)
 {
 	ft_rotate(b);
-	if (b->bench)
-	{
-		b->bench->ops_count++;
-		b->bench->rb_count++;
-	}
+	b->ops[OP_RB]++;
+	b->ops[OP_TOTAL]++;
 	write(1, "rb\n", 3);
 }
 
@@ -30,11 +27,8 @@ void	ft_rb(t_stack *b)
 void	ft_ra(t_stack *a)
 {
 	ft_rotate(a);
-	if (a->bench)
-	{
-		a->bench->ops_count++;
-		a->bench->ra_count++;
-	}
+	a->ops[OP_RA]++;
+	a->ops[OP_TOTAL]++;
 	write(1, "ra\n", 3);
 }
 
@@ -44,11 +38,8 @@ void	ft_rr(t_stack *a, t_stack	*b)
 {
 	ft_rotate(a);
 	ft_rotate(b);
-	if (a->bench)
-	{
-		a->bench->ops_count++;
-		a->bench->rr_count++;
-	}
+	b->ops[OP_RR]++;
+	b->ops[OP_TOTAL]++;
 	write(1, "rr\n", 3);
 }
 

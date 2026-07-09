@@ -48,6 +48,10 @@ d. Investigating which smaller skills were needed to successfully understand thi
 
 ## FAQs
 
+As a suggestion, use this valgrind full command to help you during troubleshooting leaks in your program:
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./executable
+
+
 ### Testing
 
 I want to run a test command that is able to compile my mains and run different tests

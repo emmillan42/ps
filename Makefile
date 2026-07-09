@@ -9,11 +9,18 @@ SRC_DIR = src
 TEST_DIR = tests
 OBJS_DIR = obj
 
-CFILES = push_swap.c \
+CFILES = main.c \
 	core/ft_sort.c \
 	core/ft_sort_utils.c \
-	core/ft_sort_chunks.c \
-	core/ft_sort_small.c \
+	core/ft_sort_units.c \
+	core/simple/ft_sort_simple.c \
+	core/medium/ft_sort_medium.c \
+	core/metadata/metadata_cheapest.c \
+	core/metadata/metadata_cost.c \
+	core/metadata/metadata_index.c \
+	core/metadata/metadata_position.c \
+	core/metadata/metadata_target_a.c \
+	core/metadata/metadata_target_b.c \
 	operations/push/ft_push.c \
 	operations/rotate/ft_rotate.c \
 	operations/swap/ft_swap.c \
@@ -24,8 +31,9 @@ CFILES = push_swap.c \
 	parse/ft_parse_integers.c \
 	parse/ft_parse_utils.c \
 	stack/ft_stack_init.c \
+	stack/ft_stack_list_utils.c \
 	stack/ft_stack_utils.c \
-	stack/ft_stack_utils_2.c \
+	stack/ft_stack_print.c \
 	bench/ft_bench.c \
 	bench/ft_bench_utils.c \
 	errors/ft_errors.c

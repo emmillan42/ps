@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 12:58:55 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:32:47 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:18:38 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ char	*ft_strjoin_sep(char *prev, char *new)
 	return (free(prev), joined);
 }
 
+static int	startswith_dashdash(const char *s)
+{
+	if (!s)
+		return (0);
+	return (s[0] == '-' && s[1] == '-');
+}
+
 int	ft_valid_args(char **argv_split)
 {
 	int		strategy_count;
@@ -80,13 +87,17 @@ int	ft_valid_args(char **argv_split)
 	i = 0;
 	while (argv_split[i])
 	{
-		if (!ft_isflag_ps(argv_split[i]) && !ft_valid_istr(argv_split[i]))
+		if (startswith_dashdash(argv_split[i]))
+		{
+			if (!ft_isflag_ps(argv_split[i]))
+				return (0);
+			else if (ft_strcmp(argv_split[i], "--bench") != 0)
+				strategy_count++;
+		}
+		else if (!ft_valid_istr(argv_split[i]))
 			return (0);
-		if (ft_isflag_ps(argv_split[i])
-			&& ft_strcmp(argv_split[i], "--bench") != 0)
-			strategy_count++;
 		if (strategy_count > 1)
-			return (ft_printf("Argument is: %s \n", argv_split[3]), 0);
+			return (0);
 		i++;
 	}
 	return (1);

@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_small.c                                    :+:      :+:    :+:   */
+/*   metadata.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/27 17:45:39 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 11:35:17 by durisosa         ###   ########.fr       */
+/*   Created: 2026/07/03 09:43:06 by emmmilla          #+#    #+#             */
+/*   Updated: 2026/07/06 15:56:57 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	update_metadata(t_stack *a, t_stack *b)
+{
+	assign_indexes(a);
+	update_positions(a);
+	update_positions(b);
+	update_targets_a(a, b);
+	update_targets_b(a, b);
+	update_costs(a, b);
+	find_cheapest(a);
+}

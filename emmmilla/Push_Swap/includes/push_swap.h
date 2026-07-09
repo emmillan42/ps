@@ -3,17 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 17:33:22 by emmmilla          #+#    #+#             */
 /*   Updated: 2026/07/03 10:24:53 by emmmilla         ###   ########.fr       */
+=======
+/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/29 17:33:22 by emmmilla          #+#    #+#             */
+/*   Updated: 2026/07/03 21:08:00 by durisosa         ###   ########.fr       */
+>>>>>>> durisosa
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+<<<<<<< HEAD
 # include "../../../0/Libft/libft.h"
+=======
+# include "libft.h"
+>>>>>>> durisosa
 # include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>

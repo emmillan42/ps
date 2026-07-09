@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:29:35 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/02 12:53:36 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 19:18:23 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ ft_sort function.
 */
 int	ft_parse_pushswap(t_stack **a, char **split)
 {
-	*a = ft_stack_new();
+	*a = ft_stack_new(1);
 	if (!*a)
 		return (0);
 	if (!ft_parse_flags(*a, split))
-		return (ft_free_stack(*a), 0);
+		return (0);
 	if (!ft_parse_integers(*a, split))
-		return (ft_free_stack(*a), 0);
-	if (*a && (*a)->bench)
-		ft_bench_init(*a);
+		return (0);
+	assign_indexes(*a);
 	return (1);
 }

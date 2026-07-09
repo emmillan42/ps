@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_utils_2.c                                 :+:      :+:    :+:   */
+/*   metadata_position.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/06/30 17:53:21 by durisosa         ###   ########.fr       */
+/*   Created: 2026/07/02 18:14:30 by emmmilla          #+#    #+#             */
+/*   Updated: 2026/07/09 14:45:56 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_index(t_stack *stack, int target)
+void	update_positions(t_stack *stack)
 {
-	return (-1);
-}
+	t_node	*node;
+	int		position;
 
-int	ft_indexrel(t_stack *stack, int target)
-{
-	return (-1);
-}
-
-int	ft_stacksorted(t_stack *stack)
-{
-	t_node	*head;
-	t_node	*tmp;
-
-	if (!stack)
-		return (1);
-	head = stack->head;
-	while (head)
+	node = stack->head;
+	position = 0;
+	while (node)
 	{
-		tmp = head;
-		while (tmp)
-		{
-			if (head->value < tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-		head = head->next;
+		node->above_median = (position < stack->size / 2);
+		if (node->above_median)
+			node->position = position;
+		else
+			node->position = stack->size - node->position;
+		position++;
+		node = node->next;
 	}
-	return (1);
 }

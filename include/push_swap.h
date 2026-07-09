@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 19:14:07 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/09 20:16:41 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "libft.h"
-
-/*
-	The selector is going to be found within the argv.
-	If selector is given, strategy is going to be equal to it.
-	If no selector is given it defaults to adaptive, which then
-	selects a strategy (can only be simple, medium, or complex).
-*/
 
 typedef enum e_strategy
 {

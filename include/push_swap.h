@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 20:16:41 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/15 15:33:59 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ typedef struct s_stack
 
 //ERRORS
 int			ft_return_error(int print);
-int			ft_exit_error(int code);
+void		ft_exit_error(int code);
 
 //PARSE UTILS
+
+char		**split_arguments(int argc, char **argv);
 int			ft_valid_args(char **argv_split);
-int			ft_parse_pushswap(t_stack **a, char **argv_split);
+int			ft_parse_pushswap(t_stack **a, t_stack **b, char **argv_split);
 int			ft_parse_flags(t_stack *a, char **split);
 int			ft_parse_integers(t_stack *a, char **split);
 char		*ft_strjoin_args(int argc, char **argv);
@@ -88,7 +90,7 @@ long		ft_atol(char *str);
 
 //STACK UTILS
 t_node		*ft_node_new(int value);
-t_stack		*ft_stack_new(int create_ops);
+t_stack		*ft_stack_new(int *ops);
 void		ft_free_stack(t_stack *stack);
 void		ft_print_stack(t_stack *stack);
 void		ft_stack_index(t_stack **stack);
@@ -98,9 +100,9 @@ t_node		*ft_stacklast(t_stack *stack);
 void		ft_stack_setstrategies(t_stack *a, char *s1, char *s2);
 void		ft_stack_setnames(t_stack *a, char *s1, char *s2);
 int			ft_stack_init(t_stack *stack);
-void		ft_stack_init_numbers(t_stack *a, int *numbers, int size);
-void		ft_stackadd_back(t_stack *stack, t_node *new);
-void		ft_stackadd_front(t_stack *stack, t_node *new);
+void		ft_stack_add_numbers(t_stack *a, int *numbers, int size);
+void		ft_stackadd_back(t_stack *stack, t_node *node);
+void		ft_stackadd_front(t_stack *stack, t_node *node);
 int			stack_find_index(t_stack *stack, int index);
 int			stack_find_pos(t_stack *stack, t_node *node);
 void		stack_index_to_top(t_stack *stack, int index, char stack_name);
@@ -126,17 +128,52 @@ void		ft_sort_medium(t_stack *a, t_stack *b);
 void		ft_sort_complex(t_stack *a, t_stack *b);
 
 ////SORT SIMPLE - METADATA
-t_node		*find_cheapest(t_stack *stack);
+/* ************************************************************************** */
+/* ALGORITHM                                                                  */
+/* ************************************************************************** */
+
+/* algorithm_small.c */
+void		sort_two(t_stack *a);
+void		sort_three(t_stack *a);
+
+/* algorithm_small_utils.c */
+t_node		*find_min(t_stack *stack);
+void		sort_four_five(t_stack *a, t_stack *b);
+
+void		bring_to_top(t_stack *stack, t_node *top_node, char name);
+void		move_a_to_b(t_stack *a, t_stack *b);
+void		move_b_to_a(t_stack *a, t_stack *b);
+void		rotate_to_top(t_stack *stack, t_node *top_node, char name);
+void		reverse_rotate_to_top(t_stack *stack, t_node *top_node, char name);
+void		rotate_both(t_stack *a, t_stack *b, t_node *top_a,
+				t_node *top_b);
+void		reverse_rotate_both(t_stack *a, t_stack *b, t_node *top_a,
+				t_node *top_b);
+void		ft_sort_simple(t_stack *a, t_stack *b);
+
+/* ************************************************************************** */
+/* METADATA                                                                   */
+/* ************************************************************************** */
+
+/* metadata_index.c */
+void		assign_indexes(t_stack *stack);
 void		update_positions(t_stack *stack);
 void		update_targets_a(t_stack *a, t_stack *b);
 void		update_targets_b(t_stack *a, t_stack *b);
-void		assign_indexes(t_stack *stack);
-void		update_costs(t_stack *a, t_stack *b);
+void		update_costs_a(t_stack *a, t_stack *b);
+void		update_costs_b(t_stack *a, t_stack *b);
+void		find_cheapest(t_stack *stack);
+t_node		*find_lowest_cost(t_stack *stack);
+void		update_metadata_a_to_b(t_stack *a, t_stack *b);
+void		update_metadata_b_to_a(t_stack *a, t_stack *b);
+
+
+
+
 
 //SORT UTILS
 int			ft_max_index(t_stack *stack);
 int			ft_min_index(t_stack *stack);
-void		rotate_to_top(t_stack *stack, t_node *target, char name);
 int			int_sqrt(int n);
 
 //OPERATIONS

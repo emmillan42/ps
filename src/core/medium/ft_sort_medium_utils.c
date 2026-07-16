@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bench_utils.c                                   :+:      :+:    :+:   */
+/*   ft_sort_medium_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/29 13:34:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 19:59:05 by durisosa         ###   ########.fr       */
+/*   Created: 2026/06/14 19:01:17 by carlinaq          #+#    #+#             */
+/*   Updated: 2026/07/16 18:16:45 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putdisorder_fd(double disorder, int fd)
+int	stack_has_index_in_range(t_stack *stack, int start, int end)
 {
-	int	disorder_100;
+	t_node	*node;
 
-	disorder_100 = (int)(disorder * 100 + 0.5);
-	if (disorder_100 >= 100)
+	if (!stack || stack->size == 0 || start > end)
+		return (0);
+	node = stack->head;
+	while (node)
 	{
-		ft_putstr_fd("100.00%", fd);
-		return ;
+		if (node->index >= start && node->index < end)
+			return (1);
+		node = node->next;
 	}
-	ft_putnbr_fd(disorder_100, fd);
-	ft_putstr_fd(".00%", fd);
-}
-
-void	ft_pulabel_fd(const char *label, int number, int fd)
-{
-	ft_putstr_fd((char *)label, fd);
-	ft_putnbr_fd(number, fd);
+	return (0);
 }

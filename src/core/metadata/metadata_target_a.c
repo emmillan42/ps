@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 19:49:15 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/15 15:10:13 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/16 15:27:05 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,18 @@ void	update_targets_a(t_stack *a, t_stack *b)
 		node = node->next;
 	}
 }
+
+/**
+ * Propuesta Durian
+ * No es suficiente con encontrar biggest smaller,
+ * in order to corretly find the correct position
+ * Is necessary to check also that the number to push
+ * satisfies the following condition: 
+ * a->head->value > b->head->value && 
+ * a->head->value < b->tail->value
+ * 
+ * OR
+ * 
+ * a->head->value > b->head->value && 
+ * a->head->value < b->next->value (in this case return pos + 1);
+ */

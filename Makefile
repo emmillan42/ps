@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 INCLUDE = -Iinclude -Ilib
-NAME = push_swap.out
+NAME = push_swap
 PUSHSWAP_LIB = push_swap.a
 BONUS_DIR = ./bonus
 LIBFT_DIR = ./lib
@@ -21,6 +21,7 @@ CFILES = main.c \
 	core/simple/algorithm_small_utils.c\
 	core/simple/algorithm_turk.c\
 	core/medium/ft_sort_medium.c \
+	core/medium/ft_sort_medium_utils.c \
 	core/metadata/metadata_cheapest.c \
 	core/metadata/metadata_cost.c \
 	core/metadata/metadata_index.c \

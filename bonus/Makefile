@@ -1,8 +1,8 @@
-CC = gcc
+CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -rf
 INCLUDE = -I./include -I../lib -I../include
-NAME = checker.out
+NAME = checker
 PUSHSWAP_LIB_DIR = ..
 PUSHSWAP_LIB = $(PUSHSWAP_LIB_DIR)/push_swap.a
 SRC_DIR = src

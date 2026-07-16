@@ -6,7 +6,7 @@
 /*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 09:37:10 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/15 20:37:23 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/16 14:55:18 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static void	final_rotation(t_stack *a)
 
 void	ft_sort_simple(t_stack *a, t_stack *b)
 {
-	if (a->size > 3)
-		ft_pb(a, b);
-	if (a->size > 3)
-		ft_pb(a, b);
+	ft_pb(a, b);
+	ft_pb(a, b);
 	while (a->size > 3)
 	{
 		update_metadata_a_to_b(a, b);

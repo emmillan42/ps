@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:04:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/17 14:59:35 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/20 15:57:13 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	run_strategy(t_stack **a, t_stack **b)
 	if ((*a)->size <= 5)
 		ft_sort_units(*a, *b);
 	else if ((*a)->strategy_used == STRAT_SIMPLE)
-		sort_turk(*a, *b);
+		sort_insertion(*a, *b);
 	else if ((*a)->strategy_used == STRAT_MEDIUM)
 		sort_chunk(*a, *b);
 	else

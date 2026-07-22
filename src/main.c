@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/16 19:00:18 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:23:02 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	free_all(char **argv_split, t_stack *a, t_stack *b)
 {
 	ft_free_split(argv_split);
 	ft_free_stack(a);
-	b->ops = NULL;
-	free(b->ops);
+	if (b)
+		b->ops = NULL;
 	ft_free_stack(b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack		*a;
-	t_stack		*b;
-	char		**argv_split;
+	t_stack	*a;
+	t_stack	*b;
+	char	**argv_split;
 
 	a = NULL;
 	b = NULL;

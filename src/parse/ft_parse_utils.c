@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 19:18:00 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:27:17 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_isflag_ps(char *str)
 		return (1);
 	else if (ft_strcmp("--complex", str) == 0)
 		return (1);
-	else if (ft_strcmp("--adaptative", str) == 0)
+	else if (ft_strcmp("--adaptive", str) == 0)
 		return (1);
 	else if (ft_strcmp("--bench", str) == 0)
 		return (1);

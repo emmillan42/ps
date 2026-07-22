@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_valid_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 12:58:55 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 20:00:36 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:29:39 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Scenarios to contemplate:
 ./push_swap.out " 35 46 7   " 9 8 7 --simple
 ./push_swap.out 34 45  "" 9 8 7 " " "   " --> parse integers only until 45.
 ./push_swap.out 34 45  " 99 hola 3" 9 --> parse integers only until 99.
-./push_swap.out "" "  " " 35 46 7  --complex " 9 8 7 
+./push_swap.out "" "  " " 35 46 7  --complex " 9 8 7
 
 Example invalid inputs:
 
@@ -65,9 +65,14 @@ char	*ft_strjoin_sep(char *prev, char *new)
 	joined = malloc((prev_len + new_len + 2) * sizeof(char));
 	if (!joined)
 		return (free(prev), prev = NULL, NULL);
-	ft_strlcpy(joined, prev, prev_len);
-	ft_strlcpy(joined + prev_len, " ", 2);
-	ft_strlcpy(joined + prev_len + 1, new, new_len);
+	if (prev)
+	{
+		ft_strlcpy(joined, prev, prev_len + 1);
+		ft_strlcpy(joined + prev_len, " ", 2);
+		ft_strlcpy(joined + prev_len + 1, new, new_len + 1);
+	}
+	else
+		ft_strlcpy(joined, new, new_len + 1);
 	return (free(prev), joined);
 }
 
@@ -80,8 +85,8 @@ static int	startswith_dashdash(const char *s)
 
 int	ft_valid_args(char **argv_split)
 {
-	int		strategy_count;
-	int		i;
+	int	strategy_count;
+	int	i;
 
 	strategy_count = 0;
 	i = 0;

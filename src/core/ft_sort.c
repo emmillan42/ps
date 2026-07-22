@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:04:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/20 15:57:13 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/22 21:46:03 by durisosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	run_strategy(t_stack **a, t_stack **b)
 	else if ((*a)->strategy_used == STRAT_SIMPLE)
 		sort_insertion(*a, *b);
 	else if ((*a)->strategy_used == STRAT_MEDIUM)
-		sort_chunk(*a, *b);
+		ft_sort_chunk(*a, *b);
 	else
 		sort_radix(*a, *b);
 }

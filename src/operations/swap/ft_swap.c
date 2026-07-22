@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 17:32:43 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 19:17:10 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:12:43 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ void	ft_swap(t_stack *stack)
 	first = stack->head;
 	second = first->next;
 	first->next = second->next;
+	if (stack->size > 2)
+		second->next->prev = first;
+	else
+		stack->tail = first;
 	first->prev = second;
 	second->next = first;
 	second->prev = NULL;
 	stack->head = second;
-	if (stack->size == 2)
-		stack->tail = first;
 }
 
 void	ft_sa(t_stack *a)

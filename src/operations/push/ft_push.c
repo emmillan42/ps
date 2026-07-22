@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 10:18:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/09 20:00:44 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:10:28 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ void	ft_push(t_stack *dst, t_stack *src)
 		return ;
 	tmp = src->head;
 	src->head = src->head->next;
+	if (src->head)
+		src->head->prev = NULL;
+	else
+		src->tail = NULL;
 	tmp->next = dst->head;
 	tmp->prev = NULL;
+	if (dst->head)
+		dst->head->prev = tmp;
 	dst->head = tmp;
 	if (dst->size == 0)
 		dst->tail = tmp;

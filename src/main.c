@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 15:40:49 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/22 23:23:02 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:28:18 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		return (free_all(argv_split, a, b), ft_exit_error(1), 1);
 	if (!ft_stacksorted(a))
 		ft_sort_strategy(&a, &b);
-	if (a && a->bench)
+	if (a && a->bench && a->size > 0)
 		ft_print_bench(a);
 	return (free_all(argv_split, a, b), 0);
 }

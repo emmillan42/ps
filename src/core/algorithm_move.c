@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 15:00:46 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/22 21:27:30 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:49:02 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	bring_to_top(t_stack *stack, t_node *top_node)
 {
 	if (!stack || !top_node || stack->head == top_node)
 		return ;
+	update_positions(stack);
 	if (top_node->above_median)
 		rotate_to_top(stack, top_node);
 	else

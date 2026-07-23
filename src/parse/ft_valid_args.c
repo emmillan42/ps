@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 12:58:55 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/23 14:50:38 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:25:47 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,18 @@ by: durisosa
 char	*ft_strjoin_args(int argc, char **argv)
 {
 	int		i;
+	int		j;
 	char	*joined;
 
 	i = 1;
 	joined = NULL;
 	while (i < argc)
 	{
-		if (argv[i][0] == 0)
-			return (NULL);
+		j = 0;
+		while (argv[i][j] == ' ')
+			j++;
+		if (argv[i][j] == '\0')
+			return (free(joined), NULL);
 		joined = ft_strjoin_sep(joined, argv[i]);
 		if (!joined)
 			return (NULL);

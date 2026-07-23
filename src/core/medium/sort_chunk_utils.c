@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm_chunk_utils.c                            :+:      :+:    :+:   */
+/*   sort_chunk_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 07:40:20 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/17 14:28:58 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/23 09:31:09 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ bool	has_chunk_nodes(t_stack *a, t_chunk *chunk)
 
 int	get_chunk_count(int size)
 {
+	int	count;
+
 	if (size <= 10)
 		return (1);
-	if (size <= 100)
-		return (5);
-	return (10);
+	count = 1;
+	while (count * count * 5 < size)
+		count++;
+	return (count);
 }
 
 bool	should_rotate_after_push(t_node *node, int middle)

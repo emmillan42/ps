@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_chunk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 07:35:06 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/22 13:27:06 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/23 15:12:00 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ static void	process_chunk(t_stack *a, t_stack *b, t_chunk *chunk)
 	}
 }
 
-static void	run_chunk(t_stack *a, t_stack *b, int chunk_index, int total_size)
+static void	run_chunk(t_stack *a, t_stack *b, int chunk_index,
+		int total_size, int	chunk_size)
 {
 	t_chunk	chunk;
-	int		chunk_size;
 
-	chunk_size = get_chunk_size(total_size);
 	chunk.start = chunk_index * chunk_size;
 	chunk.end = chunk.start + chunk_size - 1;
 	if (chunk.end >= total_size)
@@ -45,15 +44,17 @@ static void	push_chunks(t_stack *a, t_stack *b)
 {
 	int	total_size;
 	int	chunk_count;
+	int	chunk_size;
 	int	i;
 
 	total_size = a->size;
+	chunk_size = get_chunk_size(total_size);
 	chunk_count = get_chunk_count(total_size);
 	i = 0;
 	while (i < chunk_count)
 	{
-		run_chunk(a, b, i, total_size);
-		i++;
+		run_chunk(a, b, i, total_size, chunk_size);
+		i += chunk_size;
 	}
 }
 
@@ -71,12 +72,6 @@ static void	pull_chunks(t_stack *a, t_stack *b)
 
 void	sort_chunk(t_stack *a, t_stack *b)
 {
-	int	chunk;
-
-	chunk = int_sqrt(a->size) + 1;
-	while (a->size)
-	{
-		/* code */
-	}
-	
+	push_chunks(a, b);
+	pull_chunks(a, b);
 }

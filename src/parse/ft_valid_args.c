@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 12:58:55 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/22 22:29:39 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:50:38 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*ft_strjoin_args(int argc, char **argv)
 	joined = NULL;
 	while (i < argc)
 	{
+		if (argv[i][0] == 0)
+			return (NULL);
 		joined = ft_strjoin_sep(joined, argv[i]);
 		if (!joined)
 			return (NULL);

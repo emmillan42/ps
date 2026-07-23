@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 07:40:20 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/23 09:31:09 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 15:06:32 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_chunk_count(int size)
 	if (size <= 10)
 		return (1);
 	count = 1;
-	while (count * count * 5 < size)
+	while (count * count < size)
 		count++;
 	return (count);
 }

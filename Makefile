@@ -76,10 +76,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(LIBFT)
-	$(CC) $(FLAGS) $(INCLUDE) $(PUSHSWAP_LIB) $(LIBFT) -o $@ 
-
-bonus: $(BONUS_OBJS)
-	$(CC) $(FLAGS) $(INCLUDE) -I./bonus $(OBJS) $^ -L./lib -lft -o $(CHECKER)
+	$(CC) $(FLAGS) $(INCLUDE) $(PUSHSWAP_LIB) $(LIBFT) -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean

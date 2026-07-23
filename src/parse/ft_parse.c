@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:29:35 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/22 22:38:25 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:50:55 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	ft_parse_pushswap(t_stack **a, t_stack **b, char **split)
 	if (!ft_parse_flags(*a, split))
 		return (0);
 	if (!ft_parse_integers(*a, split))
-		return (0);
-	if ((*a)->size == 0)
 		return (0);
 	assign_indexes(*a);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:22:10 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/15 21:42:46 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:33:21 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_read_instructions(t_stack *a, t_stack *b)
 	int		op_count;
 	char	*line;
 
+	a->verbose = 0;
+	b->verbose = 0;
 	op_count = 0;
 	line = get_next_line(0);
 	while (line != NULL)
@@ -85,7 +87,7 @@ void	ft_read_instructions(t_stack *a, t_stack *b)
 			exit_error();
 		free(line);
 		op_count++;
-		if (op_count == a->ops[OP_TOTAL])
+		if (ft_stacksorted(a) && b->size == 0)
 			break ;
 		line = get_next_line(0);
 	}

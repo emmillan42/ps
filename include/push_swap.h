@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/22 20:13:19 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/23 15:12:27 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_stack
 	t_strategy	strategy_used;
 	double		disorder;
 	int			bench;
+	int			verbose;
 	int			*ops;
 }	t_stack;
 
@@ -159,7 +160,8 @@ int			get_chunk_count(int size);
 bool		should_rotate_after_push(t_node *node, int middle);
 int			get_chunk_size(int size);
 static void	process_chunk(t_stack *a, t_stack *b, t_chunk *chunk);
-static void	run_chunk(t_stack *a, t_stack *b, int chunk_index, int total_size);
+static void	run_chunk(t_stack *a, t_stack *b, int chunk_index,
+			int total_size, int chunk_size);
 static void	push_chunks(t_stack *a, t_stack *b);
 static void	pull_chunks(t_stack *a, t_stack *b);
 void		sort_chunk(t_stack *a, t_stack *b);

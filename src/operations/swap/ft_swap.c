@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 17:32:43 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/22 22:12:43 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/23 14:31:57 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	ft_sa(t_stack *a)
 	ft_swap(a);
 	a->ops[OP_SA]++;
 	a->ops[OP_TOTAL]++;
-	write(1, "sa\n", 3);
+	if (a->verbose)
+		write(1, "sa\n", 3);
 }
 
 void	ft_sb(t_stack *b)
@@ -45,7 +46,8 @@ void	ft_sb(t_stack *b)
 	ft_swap(b);
 	b->ops[OP_SB]++;
 	b->ops[OP_TOTAL]++;
-	write(1, "sb\n", 3);
+	if (b->verbose)
+		write(1, "sb\n", 3);
 }
 
 void	ft_ss(t_stack *a, t_stack *b)
@@ -54,5 +56,6 @@ void	ft_ss(t_stack *a, t_stack *b)
 	ft_swap(b);
 	a->ops[OP_SS]++;
 	a->ops[OP_TOTAL]++;
-	write(1, "ss\n", 3);
+	if (a->verbose || b->verbose)
+		write(1, "ss\n", 3);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 11:36:34 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/17 14:53:45 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:41:25 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ void	ft_stack_add_numbers(t_stack *a, int *numbers, int size)
 		i++;
 	}
 }
-

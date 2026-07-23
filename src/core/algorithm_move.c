@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 15:00:46 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/17 14:20:27 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 21:27:30 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	bring_to_top(t_stack *stack, t_node *top_node)
 {
-	if (stack->head == top_node)
+	if (!stack || !top_node || stack->head == top_node)
 		return ;
 	if (top_node->above_median)
 		rotate_to_top(stack, top_node);

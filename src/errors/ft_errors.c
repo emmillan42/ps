@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:34:36 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/14 20:39:45 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:40:56 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ int	ft_return_error(int print)
 		ft_putstr_fd("Error\n", 2);
 	return (1);
 }
-

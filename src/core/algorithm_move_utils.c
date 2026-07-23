@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm_move_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 15:55:03 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/17 14:44:32 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 19:20:13 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate_to_top(t_stack *stack, t_node *top_node)
 {
 	while (stack->head != top_node)
 	{
-		if (stack->name == 'b')
+		if (stack->name == 'a')
 			ft_ra(stack);
 		else
 			ft_rb(stack);

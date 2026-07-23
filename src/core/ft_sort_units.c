@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_units.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:39:01 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/07 16:39:27 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/22 19:54:03 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_sort_three(t_stack *stack)
 		if (!ft_stacksorted(stack))
 			ft_sa(stack);
 	}
-	else
+	else if (!ft_stacksorted(stack))
 		ft_sa(stack);
 }
 

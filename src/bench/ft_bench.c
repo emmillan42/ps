@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 13:34:02 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/24 13:54:00 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 15:16:07 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	ft_print_disorder(double disorder, int fd)
 
 static void	ft_print_strategy(t_stack *a, int fd)
 {
+	if (a->strategy_used == STRAT_ADAPTIVE)
+		return (ft_putstr_fd("None (already sorted)", fd));
 	if (a->strategy_arg == STRAT_ADAPTIVE)
 		ft_putstr_fd("Adaptive -> ", fd);
 	if (a->strategy_used == STRAT_SIMPLE)
@@ -78,8 +80,6 @@ static void	ft_print_strategy(t_stack *a, int fd)
 		ft_putstr_fd("Medium (Chunk Sort) / O(n√n)", fd);
 	else if (a->strategy_used == STRAT_COMPLEX)
 		ft_putstr_fd("Complex (Turkish Sort) / O(n log n)", fd);
-	else if (a->strategy_used == STRAT_RADIX)
-		ft_putstr_fd("Radix Sort / O(n log n)", fd);
 	else
 		ft_putstr_fd("Radix Sort / O(n log n)", fd);
 }

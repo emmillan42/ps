@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bench.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 13:34:02 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/17 13:14:08 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 11:10:36 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,17 @@ static void	ft_print_disorder(double disorder, int fd)
 static void	ft_print_strategy(t_stack *a, int fd)
 {
 	if (a->strategy_arg == STRAT_ADAPTIVE)
-		ft_putstr_fd("Adaptive / ", fd);
-	else if (a->strategy_arg == STRAT_SIMPLE)
-		ft_putstr_fd("Simple (Insertion Sort) / ", fd);
-	else if (a->strategy_arg == STRAT_MEDIUM)
-		ft_putstr_fd("Medium (Chunk Sort)/ ", fd);
-	else if (a->strategy_arg == STRAT_COMPLEX)
-		ft_putstr_fd("Complex (Radix Sort) / ", fd);
+		ft_putstr_fd("Adaptive -> ", fd);
 	if (a->strategy_used == STRAT_SIMPLE)
-		ft_putstr_fd("O(n²)", fd);
+		ft_putstr_fd("Simple (Insertion Sort) / O(n²)", fd);
+	else if (a->strategy_used == STRAT_NEARLY)
+		ft_putstr_fd("Low disorder (Extraction Sort) / O(n)", fd);
 	else if (a->strategy_used == STRAT_MEDIUM)
-		ft_putstr_fd("O(n√n)", fd);
+		ft_putstr_fd("Medium (Chunk Sort) / O(n√n)", fd);
 	else if (a->strategy_used == STRAT_COMPLEX)
-		ft_putstr_fd("O(n log n)", fd);
+		ft_putstr_fd("Complex (Turkish Sort) / O(n log n)", fd);
+	else
+		ft_putstr_fd("Radix Sort / O(n log n)", fd);
 }
 
 void	ft_print_bench(t_stack *a)

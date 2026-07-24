@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 13:28:22 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/24 09:23:42 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 10:58:50 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum e_strategy
 	STRAT_MEDIUM,
 	STRAT_COMPLEX,
 	//
-	STRAT_TURK,
+	STRAT_RADIX,
+	STRAT_NEARLY,
 	//
 	STRAT_ADAPTIVE
 }					t_strategy;
@@ -146,7 +147,7 @@ void				final_rotation(t_stack *a);
 
 // SORT SIMPLE
 void				sort_insertion(t_stack *a, t_stack *b);
-void				sort_turk(t_stack *a, t_stack *b);
+void				sort_nearly(t_stack *a, t_stack *b);
 
 // SORT MEDIUM
 typedef struct s_chunk
@@ -167,6 +168,7 @@ void				sort_chunk(t_stack *a, t_stack *b);
 
 // SORT COMPLEX
 void				sort_radix(t_stack *a, t_stack *b);
+void				sort_turk(t_stack *a, t_stack *b);
 
 /* ************************************************************************** */
 /* STACK                                                                      */

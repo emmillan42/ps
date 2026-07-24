@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 18:04:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/23 21:23:53 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 10:17:33 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@ static void	run_strategy(t_stack **a, t_stack **b)
 		ft_sort_units(*a, *b);
 	else if ((*a)->strategy_used == STRAT_SIMPLE)
 		sort_insertion(*a, *b);
+	else if ((*a)->strategy_used == STRAT_NEARLY)
+		sort_nearly(*a, *b);
 	else if ((*a)->strategy_used == STRAT_MEDIUM)
 		sort_chunk(*a, *b);
 	else if ((*a)->strategy_used == STRAT_COMPLEX)
-		sort_radix(*a, *b);
-	else
 		sort_turk(*a, *b);
+	else
+		sort_radix(*a, *b);
 }
 
 static t_strategy	ft_adaptive_choice(t_stack *a)
 {
 	if (a->disorder < 0.2)
-		return (STRAT_SIMPLE);
+		return (STRAT_NEARLY);
 	if (a->disorder < 0.5)
 		return (STRAT_MEDIUM);
-	return (STRAT_TURK);
+	return (STRAT_COMPLEX);
 }
 
 void	ft_sort_strategy(t_stack **a, t_stack **b)

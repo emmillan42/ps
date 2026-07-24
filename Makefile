@@ -68,7 +68,7 @@ $(LIBFT):
 $(NAME): $(PUSHSWAP_LIB) $(LIBFT)
 	$(CC) $(CFLAGS) $(INCLUDE) $(PUSHSWAP_LIB) ./lib/libft.a -o $@
 
-bonus: $(PUSHSWAP_LIB) $(LIBFT)
+bonus: $(NAME)
 	$(MAKE) -C $(BONUS_DIR)
 
 clean:

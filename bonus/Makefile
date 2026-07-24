@@ -26,7 +26,7 @@ $(PUSHSWAP_LIB):
 	$(MAKE) -C $(PUSHSWAP_LIB_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) -L../lib -lft -o ../$@
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) ../lib/libft.a -o ../$@
 
 clean:
 	$(RM) $(OBJS_DIR)

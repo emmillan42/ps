@@ -309,7 +309,7 @@ not delegate design decisions.
 **42 Madrid Student**
 
 Repository:
-https://github.com/durisosa/ps
+https://github.com/dmsosa/ft_push_swap
 
 
 ### Emmanuel Millán Contreras

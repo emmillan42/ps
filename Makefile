@@ -1,5 +1,5 @@
 AR = ar -rcs
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 INCLUDE = -Iinclude -Ilib
@@ -9,7 +9,6 @@ BONUS_DIR = ./bonus
 LIBFT_DIR = ./lib
 LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = src
-TEST_DIR = tests
 OBJS_DIR = obj
 
 CFILES = main.c \
@@ -50,14 +49,6 @@ CFILES = main.c \
 	bench/ft_bench.c \
 	errors/ft_errors.c
 
-TESTFILES = tests/test_disorder.c \
-tests/test_helper.c \
-tests/test_strcmp.c \
-tests/test_parser.c \
-tests/test_sort.c \
-
-
-
 OFILES = $(CFILES:%.c=%.o)
 
 SRCS = $(addprefix $(SRC_DIR)/, $(CFILES))
@@ -68,7 +59,7 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) $(INCLUDE) $^ -L./lib -lft -c -o $@
+	$(CC) $(FLAGS) $(INCLUDE) -c $^ -o $@
 
 $(PUSHSWAP_LIB) : $(OBJS)
 	$(AR) $(PUSHSWAP_LIB) $^
@@ -77,7 +68,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(LIBFT)
-	$(CC) $(FLAGS) $(INCLUDE) $(PUSHSWAP_LIB) $(LIBFT) -o $@
+	$(CC) $(FLAGS) $(INCLUDE) $(PUSHSWAP_LIB) ./lib/libft.a -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean

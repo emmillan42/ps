@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+         #
+#    By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/26 13:30:23 by durisosa          #+#    #+#              #
-#    Updated: 2026/07/14 18:56:21 by durisosa         ###   ########.fr        #
+#    Updated: 2026/07/24 13:54:42 by emmmilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 AR = ar rcs
 FLAGS = -Wall -Werror -Wextra
 NAME = libft.a

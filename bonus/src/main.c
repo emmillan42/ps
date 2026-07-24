@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:22:10 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/23 14:33:21 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:11:46 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,26 @@ static void	free_all(char **argv_split, t_stack *a, t_stack *b)
 {
 	ft_free_split(argv_split);
 	ft_free_stack(a);
-	b->ops = NULL;
+	if (b)
+		b->ops = NULL;
 	ft_free_stack(b);
+}
+
+int	ft_read_instructions(t_stack *a, t_stack *b)
+{
+	char	*line;
+
+	a->verbose = 0;
+	b->verbose = 0;
+	line = get_next_line(0);
+	while (line != NULL)
+	{
+		if (!ft_do_op(line, a, b))
+			return (free(line), 0);
+		free(line);
+		line = get_next_line(0);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -61,34 +79,14 @@ int	main(int argc, char **argv)
 		return (1);
 	argv_split = split_arguments(argc, argv);
 	if (!ft_valid_args(argv_split))
-		return (free(argv_split), ft_exit_error(1), 1);
+		return (ft_free_split(argv_split), ft_exit_error(1), 1);
 	if (!ft_parse_pushswap(&a, &b, argv_split))
 		return (free_all(argv_split, a, b), ft_exit_error(1), 1);
-	ft_read_instructions(a, b);
+	if (!ft_read_instructions(a, b))
+		return (free_all(argv_split, a, b), ft_exit_error(1), 1);
 	if (ft_stacksorted(a) && b->size == 0)
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
-	return (0);
-}
-
-void	ft_read_instructions(t_stack *a, t_stack *b)
-{
-	int		op_count;
-	char	*line;
-
-	a->verbose = 0;
-	b->verbose = 0;
-	op_count = 0;
-	line = get_next_line(0);
-	while (line != NULL)
-	{
-		if (!ft_do_op(line, a, b))
-			exit_error();
-		free(line);
-		op_count++;
-		if (ft_stacksorted(a) && b->size == 0)
-			break ;
-		line = get_next_line(0);
-	}
+	return (free_all(argv_split, a, b), 0);
 }

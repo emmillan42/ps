@@ -20,19 +20,19 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) $(INCLUDE) -c $^ -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 $(PUSHSWAP_LIB):
 	$(MAKE) -C $(PUSHSWAP_LIB_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(OBJS)
-	$(CC) $(FLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) -L../lib -lft -o ../$@ 
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) -L../lib -lft -o ../$@
 
 clean:
 	$(RM) $(OBJS_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(CHECKER)
+	$(RM) ../$(NAME)
 
 re: fclean all
 

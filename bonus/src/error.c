@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 16:22:10 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/14 17:57:34 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 09:14:48 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	exit_error(void)
 {
-	write(2, "KO\n", 3);
+	write(2, "Error\n", 6);
 	exit(1);
 }

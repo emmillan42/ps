@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 10:01:55 by emmmilla          #+#    #+#             */
-/*   Updated: 2026/07/24 10:03:04 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:19:36 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	reinsert_phase(t_stack *a, t_stack *b)
 
 void	sort_nearly(t_stack *a, t_stack *b)
 {
-	int total;
+	int	total;
 
 	if (!a || a->size < 2)
 		return ;

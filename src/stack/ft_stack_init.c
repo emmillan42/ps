@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 11:36:34 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/23 14:30:58 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:17:28 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_stack	*ft_stack_new(char name, int *ops)
 	stack->verbose = 1;
 	stack->head = NULL;
 	stack->tail = NULL;
-	stack->ops = NULL;
 	if (!ops)
 	{
 		stack->ops = ft_calloc(12, sizeof(int));

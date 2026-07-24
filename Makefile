@@ -29,10 +29,10 @@ CFILES = main.c \
 	core/metadata/metadata_target_b.c \
 	core/metadata/metadata.c \
 	core/complex/sort_radix.c\
+	core/complex/sort_turk.c\
 	core/medium/sort_chunk_utils.c\
 	core/medium/sort_chunk.c\
 	core/simple/sort_insertion.c\
-	core/simple/sort_turk.c\
 	operations/push/ft_push.c \
 	operations/rotate/ft_rotate.c \
 	operations/swap/ft_swap.c \

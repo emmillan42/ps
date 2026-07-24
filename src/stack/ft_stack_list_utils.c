@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack_list_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:48:38 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/08 19:56:41 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:37:11 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_stackadd_front(t_stack *stack, t_node *new)
 {
 	t_node	*node;
 
-	if (!stack || !node)
+	if (!stack || !new)
 		return ;
 	new->prev = NULL;
 	node = stack->head;

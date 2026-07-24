@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_integers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 17:59:26 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/17 14:51:19 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:50:28 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	ft_count_istrs(char **split);
-static int	ft_numbers_append(int *numbers, int size, int *index, char *str);
 
 static int	ft_duplicated(int *numbers, int size)
 {
@@ -35,7 +32,7 @@ static int	ft_duplicated(int *numbers, int size)
 	return (0);
 }
 
-static int	ft_numbers_append(int *numbers, int size, int *index, char *str)
+static int	ft_numbers_append(int *numbers, int *index, char *str)
 {
 	long	value;
 
@@ -49,9 +46,9 @@ static int	ft_numbers_append(int *numbers, int size, int *index, char *str)
 
 static int	ft_count_istrs(char **split)
 {
-	int		stop;
-	int		i;
-	int		count;
+	int	stop;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -84,11 +81,10 @@ For example "--a" "+ maria", etc.
 */
 int	ft_parse_integers(t_stack *a, char **split)
 {
-	int		*numbers;
-	int		size;
-	int		i;
-	int		j;
-	int		stop;
+	int	*numbers;
+	int	size;
+	int	i;
+	int	j;
 
 	numbers = NULL;
 	size = ft_count_istrs(split);
@@ -101,7 +97,7 @@ int	ft_parse_integers(t_stack *a, char **split)
 		i++;
 	while (split[i] && ft_valid_istr(split[i]))
 	{
-		if (!ft_numbers_append(numbers, size, &j, split[i]))
+		if (!ft_numbers_append(numbers, &j, split[i]))
 			return (free(numbers), 0);
 		i++;
 	}

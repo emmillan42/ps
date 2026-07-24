@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:21:41 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/07 13:33:56 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:38:33 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void	ft_print_stack(t_stack *stack)
 {
 	t_node	*node;
-	int		count;
 
 	if (!stack)
 		return ;
-	count = 0;
 	node = stack->head;
 	ft_printf("\n-------- begin of stack --------\n");
 	while (node)

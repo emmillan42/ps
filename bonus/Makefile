@@ -1,8 +1,8 @@
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 INCLUDE = -I./include -I../lib -I../include
-NAME = checker
+NAME = ../checker
 PUSHSWAP_LIB_DIR = ..
 PUSHSWAP_LIB = $(PUSHSWAP_LIB_DIR)/push_swap.a
 SRC_DIR = src
@@ -26,15 +26,14 @@ $(PUSHSWAP_LIB):
 	$(MAKE) -C $(PUSHSWAP_LIB_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) ../lib/libft.a -o ../$@
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(PUSHSWAP_LIB) ../lib/libft.a -o $@
 
 clean:
 	$(RM) $(OBJS_DIR)
 
 fclean: clean
-	$(RM) ../$(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
-
+.PHONY: all clean fclean re

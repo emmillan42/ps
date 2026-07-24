@@ -57,7 +57,7 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) $(INCLUDE) -c $^ -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 $(PUSHSWAP_LIB) : $(OBJS)
 	$(AR) $(PUSHSWAP_LIB) $^
@@ -66,7 +66,10 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(PUSHSWAP_LIB) $(LIBFT)
-	$(CC) $(FLAGS) $(INCLUDE) $(PUSHSWAP_LIB) ./lib/libft.a -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) $(PUSHSWAP_LIB) ./lib/libft.a -o $@
+
+bonus: $(PUSHSWAP_LIB) $(LIBFT)
+	$(MAKE) -C $(BONUS_DIR)
 
 clean:
 	@make -C $(LIBFT_DIR) clean
@@ -81,4 +84,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re libft
-

@@ -6,7 +6,7 @@
 /*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/24 17:19:24 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/23 14:54:30 by emmmilla         ###   ########.fr       */
+/*   Updated: 2026/07/24 11:14:47 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_isflag_ps(char *str)
 	else if (ft_strcmp("--complex", str) == 0)
 		return (1);
 	else if (ft_strcmp("--adaptive", str) == 0)
+		return (1);
+	else if (ft_strcmp("--radix", str) == 0)
 		return (1);
 	else if (ft_strcmp("--bench", str) == 0)
 		return (1);

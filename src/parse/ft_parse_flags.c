@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: durisosa <durisosa@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: emmmilla <emmmilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 20:28:59 by durisosa          #+#    #+#             */
-/*   Updated: 2026/07/17 14:38:47 by durisosa         ###   ########.fr       */
+/*   Updated: 2026/07/24 11:14:22 by emmmilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_setflag_ps(t_stack *a, char *str)
 		a->strategy_arg = STRAT_MEDIUM;
 	else if (ft_strcmp("--complex", str) == 0)
 		a->strategy_arg = STRAT_COMPLEX;
+	else if (ft_strcmp("--radix", str) == 0)
+		a->strategy_arg = STRAT_RADIX;
 	else if (ft_strcmp("--bench", str) == 0)
 		a->bench = 1;
 	else

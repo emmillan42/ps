@@ -11,3 +11,19 @@
 | 9 | `ft_parse_pushswap` | `src/parse/ft_parse.c` | `if (!ft_parse_integers(*a, split))`<br>`    return (0);`<br>`if ((*a)->size == 0)`<br>`    return (0);` | `./push_swap ""` salía con código 0 en vez de `Error`: el stack quedaba vacío y `stack_is_sorted(vacío)` daba true. |
 | 10 | `free_all` | `src/main.c` | `ft_free_stack(a);`<br>`if (b)`<br>`    b->ops = NULL;`<br>`ft_free_stack(b);` | Contenía `free(b->ops)` justo después de anularlo (código muerto) y accedía a `b->ops` sin comprobar que `b` existiera. |
 | 11 | `update_costs_a`<br>`update_costs_b`<br>`combined_cost` (nueva) | `src/core/metadata/metadata_cost.c` | `static int combined_cost(int cost_self,`<br>`    int cost_target, int same_dir)`<br>`{`<br>`    if (same_dir)`<br>`    {`<br>`        if (cost_self > cost_target)`<br>`            return (cost_self);`<br>`        return (cost_target);`<br>`    }`<br>`    return (cost_self + cost_target);`<br>`}` | **Optimización (no bug):** el coste sumaba `costeA + costeB`, pero cuando ambas rotaciones van en la misma dirección `rr`/`rrr` las solapa y el coste real es `max`. Mejora: turk 592→555 ops (100) y 5360→5146 (500). |
+
+
+---
+
+
+| # | Función | Archivo | Snippet (código corregido) | Qué se corrigió |
+|---|---------|---------|---------------------------|-----------------|
+| B1 | `exit_error` | `bonus/src/error.c` | `write(2, "Error\n", 6);` | Imprimía `"KO\n"` en vez de `"Error\n"`. La hoja de evaluación exige `Error` a stderr para acciones inexistentes o con espacios; con `KO` se perdía toda esa sección. |
+| B2 | `main` | `bonus/src/main.c` | `if (!ft_valid_args(argv_split))`<br>`    return (ft_free_split(argv_split),`<br>`        ft_exit_error(1), 1);` | Usaba `free(argv_split)`, que libera el array de punteros pero no las cadenas individuales. Fuga de 8 bytes en el camino de argumentos inválidos. |
+| B3 | `main` | `bonus/src/main.c` | `return (free_all(argv_split, a, b), 0);` | El flujo de salida normal terminaba con `return (0)` sin liberar nada: 342 bytes de fuga en cada ejecución correcta. |
+| B4 | `ft_read_instructions` | `bonus/src/main.c` | `int ft_read_instructions(t_stack *a, t_stack *b)`<br>`...`<br>`if (!ft_do_op(line, a, b))`<br>`    return (free(line), 0);`<br>`...`<br>`return (1);` | Llamaba a `exit_error()` directamente ante una instrucción inválida, saliendo con `exit(1)` sin liberar stacks ni split. Ahora devuelve 0 y `main` libera antes de salir. Cambia la firma de `void` a `int`. |
+| B5 | `ft_read_instructions` | `bonus/src/main.c` | *(eliminado)*<br>`if (ft_stacksorted(a) && b->size == 0)`<br>`    break ;` | Salía del bucle en cuanto A quedaba ordenado, sin leer el resto de stdin. Instrucciones posteriores que desordenaran la pila daban un **falso OK**. Verificado: `3 2 1` + `[ra, sa, sa]` daba OK, ahora da KO. |
+| B6 | `free_all` | `bonus/src/main.c` | `if (b)`<br>`    b->ops = NULL;` | Accedía a `b->ops` sin comprobar que `b` existiera; riesgo de segfault en caminos de error donde `b` puede ser NULL. |
+| B7 | *(reglas de compilación)* | `bonus/Makefile` | `$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@`<br>`$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) ...` | Usaba `$(FLAGS)` en ambas reglas, variable inexistente (la definida es `CFLAGS`). El checker compilaba **sin** `-Wall -Werror -Wextra`. |
+| B8 | `fclean` | `bonus/Makefile` | `fclean: clean`<br>`    $(RM) ../$(NAME)` | Referenciaba `$(CHECKER)`, variable no definida, y no borraba el binario en su ruta real (`../checker`). |
+| B9 | *(declaraciones)* | `include/push_swap.h` | *(eliminadas las 4 líneas)*<br>`static void process_chunk(...);`<br>`static void run_chunk(...);`<br>`static void push_chunks(...);`<br>`static void pull_chunks(...);` | Cuatro funciones `static` declaradas en un header público. Con `-Werror` provocan "declarada pero nunca definida" en cualquier archivo que incluya el header sin definirlas — lo destapó el checker al compilar. |
